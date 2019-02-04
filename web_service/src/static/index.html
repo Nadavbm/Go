@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>HelloDudeApp</title>
+<!--  <link rel="stylesheet" href="/stylesheets/main.css"> -->
+</head>
+  <body>
+	{{if .Success}}
+        <h1>Hello World {{.First}}</h1>
+	{{else}}
+        <h1>Hello World Stranger</h1>
+        <form method="POST">
+		<label>First name:</label><br />
+		<input type="text" name="first"><br />
+		<label>Last Name:</label><br />
+		<input type="text" name="last"><br />
+		<input type="submit">
+	</form>
+	{{end}}
+        <p>To get git version press abbout</p>
+        <form action="/static/about.html" method="GET">
+            <div>
+                <input type="button" value="About - git version">
+            </div>
+        </form>
+  </body>
+</html>
