@@ -8,9 +8,9 @@ This is a multiline comment
 
 Packages:
 =========
-// Every code defined by a package name
-package main 								// Only one main package for each app
-package packageName 						// Use this for import to main
+// Write package name in the beginning of the code. This will be the name of the package to export.
+package main 								// Only one main package for each app.
+package packageName 						// Use to import to other packages
 
 Import modules | libraries:
 ===========================
@@ -54,7 +54,7 @@ var var1,var2,var3 int = 1, 2, 3 			// initialize 3 int vars
 var var1,var2,var3 = "Pita", "Kebab", "Chips" // initialize 3 vars
 
 func main() {
-	varName := value 						// Short form - only within functions
+	varName := value 						// Short form - only within functions (actually only {} )
 	_, varName := 34, 35 					// Black variable, 34 will be ignored and 35 will assign to varName
 }
 
@@ -78,6 +78,7 @@ const (
 
 Arrays, Slices and Maps:
 ========================
+// Arrays:
 var arr [n]type
 var arr [10]int							 	// Array of integers with 10 elements
 arr[0] = 12 								// The first element has the value of 12
@@ -85,6 +86,11 @@ arr[5] = 123 								// The sixth element has the value of 123
 arr := [3]int {1, 2, 3}
 twoArrays := [2][3]int{[3]int{3,6,9},[3]int{1,2,3}} // two dimesional array set
 twoArrays := [2][3]int{{3,6,9},{1,2,3}} 	// as 2 arrays of 3 integers each
+
+var weekdays []string
+weekdays := [...]string{"Monday","Tuesday","Wednesday","Thursday","Friday"}
+fmt.Println(weekdays[0])					// Print Monday
+fmt.Println(weekdays[3])					// Print Thursday
 
 // Slices:
 var slice []int 							// slice of an array
@@ -94,12 +100,34 @@ a = arrayName[1:3] 							// slice of second, third and forth elements
 b = arrayName[:1] 							// The first two elements of the array
 c = arrayName[:] 							// All array elements in a Slice
 
+menu := [...]string{"Falafel", "Hummus", "Shawarma"}
+veggimenu := menu[0:1]
+fmt.Println(veggimenu)						// Print Falafel and Hummus
+
 // Maps:
 var people map[sting] int 					// Map String to integer - example: name to age
 people := make(map[string]int)
 people["Maya"] = 25 						// mapping Key-Value
 people["Ezra"] = 46
 mapName := map[string]float32 {"someThing": 5.432, "otherThing": 43.234, "anotherThing": 123.321} //Initialize map with keys and values
+
+menu := map[string]int{
+	"Falafel":	15,
+	"Hummus":	18,
+	"Shawarma":	32,
+}
+fmt.Println(menu["Hummus"])					// Print 18
+
+Structs:
+========
+type Preson struct {
+	name string
+	age int
+}
+
+var ish Person
+
+shimon := Person{name: "Shimon", age: 54}
 
 Conditional statements:
 =======================
