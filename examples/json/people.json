@@ -1,0 +1,19 @@
+{
+    "people": [
+        {
+            "name": "Shimi",
+            "street": "HaTavor",
+            "number": 12,
+            "city": "Hadera",
+            "country": "Israel"
+
+        },
+        {
+            "name": "Margalit",
+            "street": "Tabankin",
+            "number": 54,
+            "city": "Herzelia",
+            "country": "Israel"
+        }
+    ]
+}
