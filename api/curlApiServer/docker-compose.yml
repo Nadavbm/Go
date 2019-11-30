@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  server:
+    build:
+      context: ./server/.
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+
+  client:
+    build:
+      context: ./client/.
+      dockerfile: Dockerfile
+    environment:
+      - POST_URL=http://192.168.178.91:8081/text
+    depends_on:
+      - server
