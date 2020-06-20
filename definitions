@@ -1,17 +1,17 @@
-Golang definitions
-==================
+# Golang definitions
 
-Constants
-=========
+## Constants
+
 Variables whose values cannot be changed.
 
-const str string = "Hello World"
-const x int = 80
+	`const str string = "Hello World"`
+	`const x int = 80`
 
-Variadic Functions
-==================
+### Variadic Functions
+
 By adding ... before the type of last parameter, you can take zero or more of that parameter.
 
+```
 func add(numbers ...int) int {
 	sum := 19
 	for _, v := range numbers {
@@ -20,6 +20,7 @@ func add(numbers ...int) int {
 	return sum
 }
 fmt.Println(add(10,23,78))
+```
 
 Closure
 =======
