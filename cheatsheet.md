@@ -58,15 +58,19 @@ func main() {
 ### variables
 
 ``` var varName type ``` 							              define global variable (data types above)
+
 ``` var var1,var2,var3 string ```				            define 3 variables
+
 ```var vanName int = 325 ```						            define and initial variable
+
 ``` var var1,var2,var3 int = 1, 2, 3 ```		    	  initialize 3 int vars
+
 ``` var var1,var2,var3 = "Pita", "Kebab", "Chips" ```   initialize 3 vars
 
 ```
 func main() {
-	varName := value 						// short form - only within functions (actually only {} )
-	_, varName := 34, 35 				// blank variable, 34 will be ignored and 35 will assign to varName
+	varName := value 			// short form - only within functions (actually only {} )
+	_, varName := 34, 35 	// blank variable, 34 will be ignored and 35 will assign to varName
 }
 ```
 group of variables:
