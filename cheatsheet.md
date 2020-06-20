@@ -69,8 +69,8 @@ func main() {
 
 ```
 func main() {
-	varName := value 			              // short form - only within functions (actually only {} )
-	_, varName := 34, 35 	              // blank variable, 34 will be ignored and 35 will assign to varName
+	varName := value	      // short form - only within functions (actually only {} )
+	_, varName := 34, 35    // blank variable, 34 will be ignored and 35 will assign to varName
 }
 ```
 group of variables:
