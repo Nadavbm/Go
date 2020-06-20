@@ -90,56 +90,82 @@ var (
 
 ```const bestMovieEver = "Die Hard 1" ``` 
 
+group of constants
+
+```
 const (
   i = 24
   suffix = ".conf"
   pi = 3.1415
-)											// Group of constants
+)	
+```
 
-Arrays, Slices and Maps:
+### arrays, slices and maps:
 
-// Arrays:
-var arr [n]type
-var arr [10]int							 	// Array of integers with 10 elements
-arr[0] = 12 								// The first element has the value of 12
-arr[5] = 123 								// The sixth element has the value of 123
-arr := [3]int {1, 2, 3}
-twoArrays := [2][3]int{[3]int{3,6,9},[3]int{1,2,3}} // two dimesional array set
-twoArrays := [2][3]int{{3,6,9},{1,2,3}} 	// as 2 arrays of 3 integers each
+arrays:
+``` var arr [n]type ```
 
-var weekdays []string
-weekdays := [...]string{"Monday","Tuesday","Wednesday","Thursday","Friday"}
-fmt.Println(weekdays[0])					// Print Monday
-fmt.Println(weekdays[3])					// Print Thursday
+``` var arr [10]int	```						array of integers with 10 elements
 
-// Slices:
-var slice []int 							// slice of an array
-slice := []byte {'a', 'b', 'c'} 			// initialize data in slice
-var arrayName = [4]byte {'a', 'b', 'c', 'd'} // Array of 4 elements
-a = arrayName[1:3] 							// slice of second, third and forth elements
-b = arrayName[:1] 							// The first two elements of the array
-c = arrayName[:] 							// All array elements in a Slice
+``` arr[0] = 12 ```								the first element has the value of 12
+
+``` arr[5] = 123 	```							the sixth element has the value of 123
+
+``` arr := [3]int {1, 2, 3} ```
+
+``` twoArrays := [2][3]int{[3]int{3,6,9},[3]int{1,2,3}} ```  two dimesional array set
+
+``` twoArrays := [2][3]int{{3,6,9},{1,2,3}} ``` 	 as 2 arrays of 3 integers each
+
+``` var weekdays []string ```
+
+``` weekdays := [...]string{"Monday","Tuesday","Wednesday","Thursday","Friday"} ```
+
+``` fmt.Println(weekdays[0]) ```					print Monday
+
+``` fmt.Println(weekdays[3]) ```					print Thursday
+
+### slices:
+``` var slice []int ```				slice of an array
+
+``` slice := []byte {'a', 'b', 'c'} ```	initialize data in slice
+
+``` var arrayName = [4]byte {'a', 'b', 'c', 'd'} ``` aray of 4 elements
+
+``` a = arrayName[1:3] ```						slice of second, third and forth elements
+
+``` b = arrayName[:1] 	```						the first two elements of the array
+
+``` c = arrayName[:] 		```					all array elements in a Slice
 
 menu := [...]string{"Falafel", "Hummus", "Shawarma"}
 veggimenu := menu[0:1]
 fmt.Println(veggimenu)						// Print Falafel and Hummus
 
-// Maps:
-var people map[sting] int 					// Map String to integer - example: name to age
-people := make(map[string]int)
-people["Maya"] = 25 						// mapping Key-Value
-people["Ezra"] = 46
-mapName := map[string]float32 {"someThing": 5.432, "otherThing": 43.234, "anotherThing": 123.321} //Initialize map with keys and values
+### maps:
 
+``` var people map[sting] int ```				map string to integer - example: name to age
+
+``` people := make(map[string]int) ```
+
+``` people["Maya"] = 25 	 ```		mapping Key-Value
+
+
+``` people["Ezra"] = 46 ```
+
+``` mapName := map[string]float32 {"someThing": 5.432, "otherThing": 43.234, "anotherThing": 123.321} ``` initialize map with keys and values
+
+```
 menu := map[string]int{
 	"Falafel":	15,
 	"Hummus":	18,
 	"Shawarma":	32,
 }
 fmt.Println(menu["Hummus"])					// Print 18
+```
 
-Structs:
-==
+### structs:
+
 type Preson struct {
 	name string
 	age int
@@ -149,8 +175,8 @@ var ish Person
 
 shimon := Person{name: "Shimon", age: 54}
 
-Conditional statements:
-==
+### conditional statements:
+
 
 if x > 4 {
   fmt.println("x is greater than 4")
@@ -166,20 +192,22 @@ if x:= someInt; x == 3 {
   fmt.println("x is greater than 3")
 }												// If, else if, else statement
 
-Loops:
+### loops:
 
-
+```
 func forLoop(){
 	sum := 10
 	for i=0; i < 10; i++ {
   		sum += i
 	}											
 }												// For loop
-
+```
+```
 for sum < 100 {
   sum += sum
 }												// For which is actually similar to while
-
+```
+```
 func forLoopWithBreak(){
 	for i :=10; i>0 ;i-- {
   		if i == 5{
@@ -188,23 +216,27 @@ func forLoopWithBreak(){
   	fmt.println(i)
 	}
 }
-
+```
+```
 for i,g := range map {
   fmt.println ("Key: ", k)
   fmt.println =("Value: ", v)
 }												// For loop using a map
-
+```
 for _, v := range map {
   fmt.println("I want to print only values so: ", v)
 }												// For loop with _
+```
 
-// A while true statement:
+#### while true statement:
+```
 for {
   // Statement logic
 }
+```
 
-Switch statements:
-
+#### switch statements:
+```
 func caseExample() {
 	i := 10
 	switch i {
@@ -218,7 +250,8 @@ func caseExample() {
 	default:
   		fmt.println("i is an integer that doesn't comply with the other CASE statement")
 }
-
+```
+```
 func funcWithFallThrough() {
 	i := 4
 	switch i {
@@ -234,13 +267,15 @@ func funcWithFallThrough() {
 	default:
  		fmt.println("default case")
 }
+```
+functions:
 
-Functions:
-=
-
+```
 func funcName(input1 type1, input2 type2) (output1 type1, output2 type2) {
   return value1, value2
 }
+
+```
 package main
 
 import "fmt"
@@ -261,8 +296,10 @@ func main() {
   fmt.Printf("%d is the bigger number", max_xy)
   fmt.Printf("the numbers were %d and %d", x, y)
 }										// Calling the function maxNumber and return it's value
+```
 
-// full simple function:
+##### full simple function:
+```
 package main
 
 import "fmt"
@@ -278,8 +315,10 @@ func main(){
   }
   fmt.Println("sum of all odd numbers and less than 11 is: ", sum)
 }
+```
 
-// Pass a copy of Pointer to a funcion:
+#### pass a copy of Pointer to a funcion:
+```
 package main
 
 import "fmt"
@@ -297,9 +336,10 @@ func main() {
   fmt.Println("x is now = ", x1) // x should be 4 here
   fmt.Println("x is now = ", x) // x should be 4 here
 }
+```
 
-Struct:
-=
+#### struct:
+```
 package main
 
 import "fmt"
@@ -314,11 +354,18 @@ func main() {
   Eli := Person{"Eli", 34, "Likes kebab be pita"}
   fmt.Println("Eli is ", Eli.age, "and he ", Eli.hobby)
 }
+```
 
-// Method - "a method is a function with an implicit first argument, called a receiver"
+### method 
+
+a method is a function with an implicit first argument, called a receiver
+
+```
 func (r ReceiverType) funcName(parameter) (results)
+```
 
-// Method example:
+##### method example:
+```
 package main
 
 import (
@@ -351,11 +398,14 @@ func main() {
   fmt.Println("Area of r1: ", r1.Area())
   fmt.Println("Area of r2: ", r2.Area())
 }
+```
 
-Concurrency and goroutine:
-==
-go hello(a, b, c)
-// Example of goroutine:
+### concurrency and goroutine:
+
+``` go hello(a, b, c) ```
+
+Example of goroutine:
+```
 package main
 
 import (
@@ -375,4 +425,4 @@ func main() {
   go falafel("Chips") //
   falafel("Salat") // current go routine
 }
-
+```
