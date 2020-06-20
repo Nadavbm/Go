@@ -280,13 +280,14 @@ func funcWithFallThrough() {
  		fmt.println("default case")
 }
 ```
-functions:
+### functions:
 
 ```
 func funcName(input1 type1, input2 type2) (output1 type1, output2 type2) {
   return value1, value2
 }
 
+```
 ```
 package main
 
