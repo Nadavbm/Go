@@ -1,52 +1,55 @@
+
+### go cheatsheet
 /*
-Go cheetsheet
-=============
 This is a multiline comment
 */
 
 // One line comment
 
-Packages:
-=========
-// Write package name in the beginning of the code. This will be the name of the package to export.
-package main 								// Only one main package for each app.
-package packageName 						// Use to import to other packages
+### packages
 
-Import modules | libraries:
-===========================
-import lib
+write package name in the beginning of the code. this will be the name of the package to export.
+``` package main ```								    // Only one main package for each app.
+``` package packageName ``` 						// Use to import to other packages
+
+### import
+
+``` import lib ```
+
+```
 import (
   http
   fmt
   io/ioutil
   net/http
 )
+```
 
-Data types:
-===========
-bool
-string
-int  int8  int16  int32  int64
-uint uint8 uint16 uint32 uint64 uintptr
-byte 										// alias for uint8
-rune 										// alias for int32 represents a Unicode code point
-float32 float64
-complex64 complex128
+### data types:
 
-Operators:
-==========
-+,-,*,/,%									// Addtion, subtraction, multiplication, division,remainder
-&&, || ,!									// And, or, not
+``` bool ```
+``` string ```
+``` int  int8  int16  int32  int64 ```
+``` uint uint8 uint16 uint32 uint64 uintptr ```
+``` byte ```										alias for uint8
+``` rune ```										alias for int32 represents a Unicode code point
+``` float32 float64 ```
+``` complex64 complex128 ```
+
+### operators:
+
+``` +,-,*,/,%	```								// Addtion, subtraction, multiplication, division,remainder
+``` &&, || ,!	```								// And, or, not
 
 Fucntions in short:
-===================
+=
 func main() {
 	x := "Hello World"
 	fmt.Println(x)
 }											// Running main function here returns "Hello World"
 
 Assign Variables:
-=================
+==
 var varName type 							// Define global variable (data types above)
 var var1,var2,var3 string 					// define 3 variables
 var vanName int = 325 						// define and initial variable
@@ -65,7 +68,7 @@ var (
 )											// Define a group of variables
 
 Constants:
-==========
+=
 const constansName = value 					// this value cannot change during compile time
 const Pi float32 = 3.1415926
 const bestMovieEver = "Die Hard 1" 			// Yes, this is correct until the end of all times and worlds together
@@ -77,7 +80,7 @@ const (
 )											// Group of constants
 
 Arrays, Slices and Maps:
-========================
+
 // Arrays:
 var arr [n]type
 var arr [10]int							 	// Array of integers with 10 elements
@@ -119,7 +122,7 @@ menu := map[string]int{
 fmt.Println(menu["Hummus"])					// Print 18
 
 Structs:
-========
+==
 type Preson struct {
 	name string
 	age int
@@ -130,7 +133,7 @@ var ish Person
 shimon := Person{name: "Shimon", age: 54}
 
 Conditional statements:
-=======================
+==
 
 if x > 4 {
   fmt.println("x is greater than 4")
@@ -147,7 +150,7 @@ if x:= someInt; x == 3 {
 }												// If, else if, else statement
 
 Loops:
-======
+
 
 func forLoop(){
 	sum := 10
@@ -184,7 +187,7 @@ for {
 }
 
 Switch statements:
-==================
+
 func caseExample() {
 	i := 10
 	switch i {
@@ -216,7 +219,7 @@ func funcWithFallThrough() {
 }
 
 Functions:
-==========
+=
 
 func funcName(input1 type1, input2 type2) (output1 type1, output2 type2) {
   return value1, value2
@@ -279,7 +282,7 @@ func main() {
 }
 
 Struct:
-=======
+=
 package main
 
 import "fmt"
@@ -333,7 +336,7 @@ func main() {
 }
 
 Concurrency and goroutine:
-==========================
+==
 go hello(a, b, c)
 // Example of goroutine:
 package main
