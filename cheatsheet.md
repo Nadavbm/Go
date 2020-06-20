@@ -1,10 +1,13 @@
 
-### go cheatsheet
-/*
-This is a multiline comment
-*/
+## go cheatsheet
 
-// One line comment
+```
+/*
+  This is a multiline comment
+*/
+```
+
+``` // One line comment ```
 
 ### packages
 
@@ -41,31 +44,38 @@ import (
 ``` +,-,*,/,%	```								// Addtion, subtraction, multiplication, division,remainder
 ``` &&, || ,!	```								// And, or, not
 
-Fucntions in short:
-=
+### fucntions
+
+running main function here print "Hello World"
+
+```
 func main() {
 	x := "Hello World"
 	fmt.Println(x)
-}											// Running main function here returns "Hello World"
-
-Assign Variables:
-==
-var varName type 							// Define global variable (data types above)
-var var1,var2,var3 string 					// define 3 variables
-var vanName int = 325 						// define and initial variable
-var var1,var2,var3 int = 1, 2, 3 			// initialize 3 int vars
-var var1,var2,var3 = "Pita", "Kebab", "Chips" // initialize 3 vars
-
-func main() {
-	varName := value 						// Short form - only within functions (actually only {} )
-	_, varName := 34, 35 					// Black variable, 34 will be ignored and 35 will assign to varName
 }
+```
 
+### variables
+
+``` var varName type ``` 							              define global variable (data types above)
+``` var var1,var2,var3 string ```				            define 3 variables
+```var vanName int = 325 ```						            define and initial variable
+``` var var1,var2,var3 int = 1, 2, 3 ```		    	  initialize 3 int vars
+``` var var1,var2,var3 = "Pita", "Kebab", "Chips" ```   initialize 3 vars
+
+```
+func main() {
+	varName := value 						// short form - only within functions (actually only {} )
+	_, varName := 34, 35 				// blank variable, 34 will be ignored and 35 will assign to varName
+}
+```
+group of variables:
+```
 var (
   str string
   i int
   flo float32
-)											// Define a group of variables
+)
 
 Constants:
 =
