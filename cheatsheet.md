@@ -165,25 +165,31 @@ fmt.Println(menu["Hummus"])					// Print 18
 ```
 
 ### structs:
-
+```
 type Preson struct {
 	name string
 	age int
 }
+```
 
-var ish Person
+``` var ish Person ```
 
-shimon := Person{name: "Shimon", age: 54}
+``` shimon := Person{name: "Shimon", age: 54} ```
 
 ### conditional statements:
 
+if statement
 
+```
 if x > 4 {
   fmt.println("x is greater than 4")
 } else {
   fmt.println(" x is less than 4")
-}												// if statement
+}
+```
 
+if, else if, else
+```
 if x:= someInt; x == 3 {
   fmt.println("x is equal to 3")
 } else if x < 3 {
@@ -191,6 +197,7 @@ if x:= someInt; x == 3 {
 } else {
   fmt.println("x is greater than 3")
 }												// If, else if, else statement
+```
 
 ### loops:
 
@@ -202,11 +209,13 @@ func forLoop(){
 	}											
 }												// For loop
 ```
+
 ```
 for sum < 100 {
   sum += sum
 }												// For which is actually similar to while
 ```
+
 ```
 func forLoopWithBreak(){
 	for i :=10; i>0 ;i-- {
@@ -217,11 +226,13 @@ func forLoopWithBreak(){
 	}
 }
 ```
+
 ```
 for i,g := range map {
   fmt.println ("Key: ", k)
   fmt.println =("Value: ", v)
 }												// For loop using a map
+
 ```
 for _, v := range map {
   fmt.println("I want to print only values so: ", v)
