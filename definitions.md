@@ -1,6 +1,8 @@
-# Golang definitions
+## Golang definitions
 
-## Constants
+
+
+#### Constants
 
 Variables whose values cannot be changed.
 
@@ -22,21 +24,24 @@ func add(numbers ...int) int {
 fmt.Println(add(10,23,78))
 ```
 
-Closure
-=======
+#### Closure
+
 Function inside a function:
 
+```
 func main() {
 	subtract := func (i,j int) int {
 			return i - j
 	}
 	fmt.Println(subtract(10,4))
 }
+```
 
-Recursion
-=========
+#### Recursion
+
 Function which is able to call itself.
 
+```
 func factorial(x int) uint {
 	if x == 0 {
 		return 1
@@ -44,10 +49,12 @@ func factorial(x int) uint {
 	return x * factorial(x-1)
 }
 fmt.Println(factorial(10))
+```
 
-Defer, Panic & Recover
-======================
-Defer - schedule function to run after a function completes or at the end of another function.
+#### Defer, Panic & Recover
+
+*** Defer *** - schedule function to run after a function completes or at the end of another function.
+```
 func main() {
 	defer fmt.Println("world")
 	fmt.Println("hello")
@@ -60,8 +67,9 @@ func readFile(file string) (err error) {
 	 }
 	defer f.Close()
 }
+```
 
-Panic - built in function that stops the flow control, begins panicking and stop the execution of the program (unless calling recover()). When function calls panic, the execution of the function stops and then defer functions run.
+##### Panic - built in function that stops the flow control, begins panicking and stop the execution of the program (unless calling recover()). When function calls panic, the execution of the function stops and then defer functions run.
 
 Recover - built in function that can recover from panic, capturing the value of panic and resume normal execution of the program.
 
