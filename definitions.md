@@ -51,9 +51,10 @@ func factorial(x int) uint {
 fmt.Println(factorial(10))
 ```
 
-#### Defer, Panic & Recover
+#### defer, panic & recover
 
-*** Defer *** - schedule function to run after a function completes or at the end of another function.
+``` defer ``` - schedule function to run after a function completes or at the end of another function.
+
 ```
 func main() {
 	defer fmt.Println("world")
@@ -69,10 +70,11 @@ func readFile(file string) (err error) {
 }
 ```
 
-##### Panic - built in function that stops the flow control, begins panicking and stop the execution of the program (unless calling recover()). When function calls panic, the execution of the function stops and then defer functions run.
+``` panic ``` - built in function that stops the flow control, begins panicking and stop the execution of the program (unless calling recover()). When function calls panic, the execution of the function stops and then defer functions run.
 
-Recover - built in function that can recover from panic, capturing the value of panic and resume normal execution of the program.
+``` recover ``` - built in function that can recover from panic, capturing the value of panic and resume normal execution of the program.
 
+```
 func do() {
   defer func() {
     r := recover()
@@ -87,11 +89,13 @@ func main() {
 	}()
 	panic("PICNIC!")
 }
+```
 
-Pointers
-========
+### Pointers
+
 object that stores the memory address of another value located in computer memory.
 
+```
 func main() {
 	i, j := 42, 2701
 
@@ -104,19 +108,20 @@ func main() {
 	*p = *p / 37   // divide j through the pointer
 	fmt.Println(j) // see the new value of j
 }
+```
 
-The * and & Operators
-=====================
-
-
-
-New
-===
+#### the * and & operators
 
 
 
-Struct
-======
+
+#### new
+
+
+
+
+#### struct
+
 A struct is a collection of fields. 
 
 type someThing struct {
@@ -125,16 +130,16 @@ type someThing struct {
 }
 fmt.Println(someThing{1,"Hello"})
 
-Methods
-=======
+### methods
+
 A method is a function with a receiver argument. A receiver can be a struct or non-struct type.
 
 func (receiver Type) MethodName(paramList) (returnType) {
 }
 
-Function vs. Method:
---------------------
+### function vs. method:
 
+```
 package main
 
 import (
@@ -158,23 +163,24 @@ func main() {
 	fmt.Println("Check if the point is more to the right than 4: ", p.IsRight(4))
 	fmt.Println("Check if it is more to the the left: ", IsLeft(p, 4))
 }
+```
 
-Method with Pointer receiver
-----------------------------
+### method with pointer receiver
 
+```
 func (receiver *Type) MethodName(paramList) (returnType) {
 }
+```
 
 
 
-Interface
-=========
+### interface
 
 
 
 
-Channels
-========
+### channels
+
 
 
 
