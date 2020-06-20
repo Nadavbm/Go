@@ -69,8 +69,8 @@ func main() {
 
 ```
 func main() {
-	varName := value 			// short form - only within functions (actually only {} )
-	_, varName := 34, 35 	// blank variable, 34 will be ignored and 35 will assign to varName
+	varName := value 			              // short form - only within functions (actually only {} )
+	_, varName := 34, 35 	              // blank variable, 34 will be ignored and 35 will assign to varName
 }
 ```
 group of variables:
@@ -80,12 +80,15 @@ var (
   i int
   flo float32
 )
+```
 
-Constants:
-=
-const constansName = value 					// this value cannot change during compile time
-const Pi float32 = 3.1415926
-const bestMovieEver = "Die Hard 1" 			// Yes, this is correct until the end of all times and worlds together
+### constants:
+
+``` const constansName = value ```			 this value cannot change during compile time
+
+``` const Pi float32 = 3.1415926 ```
+
+```const bestMovieEver = "Die Hard 1" ``` 
 
 const (
   i = 24
