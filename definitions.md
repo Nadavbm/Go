@@ -2,14 +2,14 @@
 
 
 
-#### Constants
+#### constants
 
 Variables whose values cannot be changed.
 
 	`const str string = "Hello World"`
 	`const x int = 80`
 
-### Variadic Functions
+### variadic functions
 
 By adding ... before the type of last parameter, you can take zero or more of that parameter.
 
@@ -24,7 +24,7 @@ func add(numbers ...int) int {
 fmt.Println(add(10,23,78))
 ```
 
-#### Closure
+#### closure
 
 Function inside a function:
 
@@ -37,7 +37,7 @@ func main() {
 }
 ```
 
-#### Recursion
+#### recursion
 
 Function which is able to call itself.
 
@@ -91,7 +91,7 @@ func main() {
 }
 ```
 
-### Pointers
+### pointers
 
 object that stores the memory address of another value located in computer memory.
 
