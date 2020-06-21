@@ -40,9 +40,9 @@ import (
 
 ``` uint uint8 uint16 uint32 uint64 uintptr ```
 
-``` byte ```										alias for uint8
+``` byte ```									      - 	alias for uint8
 
-``` rune ```										alias for int32 represents a Unicode code point
+``` rune ```										    -   alias for int32 represents a Unicode code point
 
 ``` float32 float64 ```
 
@@ -50,9 +50,9 @@ import (
 
 ### operators:
 
-``` +,-,*,/,%	```								// Addtion, subtraction, multiplication, division,remainder
+``` +,-,*,/,%	```								    -  Addtion, subtraction, multiplication, division,remainder
 
-``` &&, || ,!	```								// And, or, not
+``` &&, || ,!	```								    -  And, or, not
 
 ### fucntions
 
@@ -67,15 +67,15 @@ func main() {
 
 ### variables
 
-``` var varName type ``` 							              define global variable (data types above)
+``` var varName type ``` 							-              define global variable (data types above)
 
-``` var var1,var2,var3 string ```				            define 3 variables
+``` var var1,var2,var3 string ```			-	            define 3 variables
 
-```var vanName int = 325 ```						            define and initial variable
+```var vanName int = 325 ```					-	            define and initial variable
 
-``` var var1,var2,var3 int = 1, 2, 3 ```		    	  initialize 3 int vars
+``` var var1,var2,var3 int = 1, 2, 3 ```	-	    	  initialize 3 int vars
 
-``` var var1,var2,var3 = "Pita", "Kebab", "Chips" ```   initialize 3 vars
+``` var var1,var2,var3 = "Pita", "Kebab", "Chips" ``` -  initialize 3 vars
 
 ```
 func main() {
@@ -83,7 +83,9 @@ func main() {
 	_, varName := 34, 35      // blank variable, 34 will be ignored and 35 will assign to varName
 }
 ```
+
 group of variables:
+
 ```
 var (
   str string
@@ -94,7 +96,7 @@ var (
 
 ### constants:
 
-``` const constansName = value ```			 this value cannot change during compile time
+``` const constansName = value ```		    - 	 this value cannot change during compile time
 
 ``` const Pi float32 = 3.1415926 ```
 
@@ -115,55 +117,57 @@ const (
 arrays:
 ``` var arr [n]type ```
 
-``` var arr [10]int	```						array of integers with 10 elements
+``` var arr [10]int	```				          - 		array of integers with 10 elements
 
-``` arr[0] = 12 ```								the first element has the value of 12
+``` arr[0] = 12 ```						     	    -   	the first element has the value of 12
 
-``` arr[5] = 123 	```							the sixth element has the value of 123
+``` arr[5] = 123 	```					    	    -   	the sixth element has the value of 123
 
 ``` arr := [3]int {1, 2, 3} ```
 
-``` twoArrays := [2][3]int{[3]int{3,6,9},[3]int{1,2,3}} ```  two dimesional array set
+``` twoArrays := [2][3]int{[3]int{3,6,9},[3]int{1,2,3}} ```     -    two dimesional array set
 
-``` twoArrays := [2][3]int{{3,6,9},{1,2,3}} ``` 	 as 2 arrays of 3 integers each
+``` twoArrays := [2][3]int{{3,6,9},{1,2,3}} ``` 	-    as 2 arrays of 3 integers each
 
 ``` var weekdays []string ```
 
 ``` weekdays := [...]string{"Monday","Tuesday","Wednesday","Thursday","Friday"} ```
 
-``` fmt.Println(weekdays[0]) ```					print Monday
+``` fmt.Println(weekdays[0]) ```			-		print Monday
 
-``` fmt.Println(weekdays[3]) ```					print Thursday
+``` fmt.Println(weekdays[3]) ```			-		print Thursday
 
 ### slices:
-``` var slice []int ```				slice of an array
+``` var slice []int ```		-		slice of an array
 
-``` slice := []byte {'a', 'b', 'c'} ```	initialize data in slice
+``` slice := []byte {'a', 'b', 'c'} ```	    - initialize data in slice
 
-``` var arrayName = [4]byte {'a', 'b', 'c', 'd'} ``` aray of 4 elements
+``` var arrayName = [4]byte {'a', 'b', 'c', 'd'} ```      -     aray of 4 elements
 
-``` a = arrayName[1:3] ```						slice of second, third and forth elements
+``` a = arrayName[1:3] ```				-		slice of second, third and forth elements
 
-``` b = arrayName[:1] 	```						the first two elements of the array
+``` b = arrayName[:1] 	```				-		the first two elements of the array
 
-``` c = arrayName[:] 		```					all array elements in a Slice
+``` c = arrayName[:] 		```				-	all array elements in a Slice
 
+```
 menu := [...]string{"Falafel", "Hummus", "Shawarma"}
 veggimenu := menu[0:1]
 fmt.Println(veggimenu)						// Print Falafel and Hummus
+```
 
 ### maps:
 
-``` var people map[sting] int ```				map string to integer - example: name to age
+``` var people map[sting] int ```			- 	map string to integer - example: name to age
 
 ``` people := make(map[string]int) ```
 
-``` people["Maya"] = 25 	 ```		mapping Key-Value
+``` people["Maya"] = 25 	 ```	-  	mapping Key-Value
 
 
 ``` people["Ezra"] = 46 ```
 
-``` mapName := map[string]float32 {"someThing": 5.432, "otherThing": 43.234, "anotherThing": 123.321} ``` initialize map with keys and values
+``` mapName := map[string]float32 {"someThing": 5.432, "otherThing": 43.234, "anotherThing": 123.321} ``` -  initialize map with keys and values
 
 ```
 menu := map[string]int{
