@@ -13,9 +13,9 @@
 
 write package name in the beginning of the code. this will be the name of the package to export.
 
-``` package main ```								    // Only one main package for each app.
+``` package main ```								 -   Only one main package for each app.
 
-``` package packageName ``` 						// Use to import to other packages
+``` package packageName ``` 				 -	 Use to import to other packages
 
 ### import
 
