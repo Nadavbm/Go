@@ -1,10 +1,10 @@
 package main
 
 import (
-	"log"
-	"os"
 	"fmt"
+	"log"
 	"net/http"
+	"os"
 )
 
 func main() {
@@ -31,4 +31,3 @@ func getURL(url string) {
 		resp.Body.Close()
 	}
 }
-

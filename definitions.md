@@ -24,6 +24,14 @@ func add(numbers ...int) int {
 fmt.Println(add(10,23,78))
 ```
 
+### variadic parameters
+
+Unlimited parameters of any type ```...interface{}``` (can add how many values \ arguments you want)
+
+``` func Println(a ...interface{}) (n int, err error) ``` this function take a value of any type and unlimited amount of them
+
+```fmt.Println("String", 12, true)``` can print any value with unlimited amount of values from any type
+
 #### closure
 
 Function inside a function:

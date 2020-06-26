@@ -1,11 +1,11 @@
 package main
 
 import (
-	"net/http"
 	"go.uber.org/zap"
+	"net/http"
 )
 
-var logger *zap.Logger 
+var logger *zap.Logger
 
 func main() {
 	setLogger()

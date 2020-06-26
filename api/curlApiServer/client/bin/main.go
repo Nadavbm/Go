@@ -3,10 +3,10 @@ package main
 import (
 	"bytes"
 	"fmt"
-	"os"
-	"log"
 	"io/ioutil"
+	"log"
 	"net/http"
+	"os"
 )
 
 var webUrl string = GetEnv("POST_URL")
@@ -46,5 +46,3 @@ func curlUrl() string {
 	fmt.Println("response body:", string(body))
 	return string(body)
 }
-
-

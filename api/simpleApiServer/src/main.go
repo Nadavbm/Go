@@ -1,15 +1,15 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
-	"encoding/json"
 )
 
 type Address struct {
-	Street string `json:"Street"`
-	City string `json:"City"`
+	Street  string `json:"Street"`
+	City    string `json:"City"`
 	Country string `json:"Country"`
 }
 
@@ -17,7 +17,7 @@ type Addresses []Address
 
 func allAddresses(w http.ResponseWriter, r *http.Request) {
 	addresses := Addresses{
-		Address{Street:"Hakaktus", City:"Hadera", Country:"Israel"},
+		Address{Street: "Hakaktus", City: "Hadera", Country: "Israel"},
 	}
 	fmt.Println("Address list here")
 	json.NewEncoder(w).Encode(addresses)

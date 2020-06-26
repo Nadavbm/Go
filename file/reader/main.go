@@ -2,11 +2,10 @@ package main
 
 import (
 	"fmt"
-	"os"
 	"log"
+	"os"
 	//"io"
 	"io/ioutil"
-	
 )
 
 var path = "./README.txt"
@@ -39,8 +38,7 @@ func ReadAsBuffer() {
 	}
 	// Close file at the end of this function
 	defer file.Close()
-	
-	
+
 	text, err := ioutil.ReadAll(file)
 	fmt.Print(text)
 }
@@ -48,5 +46,3 @@ func ReadAsBuffer() {
 func PrintPath() string {
 	return path
 }
-
-

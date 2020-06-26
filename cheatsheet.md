@@ -32,6 +32,8 @@ import (
 
 ### data types:
 
+primitive data type \ built-in types
+
 ``` bool ```
 
 ``` string ```
@@ -47,6 +49,26 @@ import (
 ``` float32 float64 ```
 
 ``` complex64 complex128 ```
+
+composite data-types:
+
+Array
+
+Slice
+
+Struct
+
+Pointer
+
+Function
+
+Interface
+
+Map
+
+### conversions
+
+
 
 ### operators:
 
@@ -115,6 +137,7 @@ const (
 ### arrays, slices and maps:
 
 arrays:
+
 ``` var arr [n]type ```
 
 ``` var arr [10]int	```				          - 		array of integers with 10 elements
@@ -138,6 +161,7 @@ arrays:
 ``` fmt.Println(weekdays[3]) ```			-		print Thursday
 
 ### slices:
+
 ``` var slice []int ```		-		slice of an array
 
 ``` slice := []byte {'a', 'b', 'c'} ```	    - initialize data in slice

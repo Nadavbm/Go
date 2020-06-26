@@ -1,25 +1,25 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
+	"github.com/gorilla/mux"
+	"io/ioutil"
 	"log"
 	"net/http"
-	"io/ioutil"
-	"encoding/json"
-	"github.com/gorilla/mux"
 )
 
 type Text struct {
-	Id		string 		`json:"id"`
-	Text	string		`json:"text"`
+	Id   string `json:"id"`
+	Text string `json:"text"`
 }
 
 var Texts []Text
 
 func main() {
 	Texts = []Text{
-		Text{Id: "1", Text: "Welcome to home page!" },
-		}
+		Text{Id: "1", Text: "Welcome to home page!"},
+	}
 	handleRequests()
 }
 
@@ -28,7 +28,7 @@ func handleRequests() {
 
 	router.HandleFunc("/", homePage)
 	router.HandleFunc("/text", addText).Methods("POST")
-	
+
 	log.Fatal(http.ListenAndServe(":8081", router))
 }
 

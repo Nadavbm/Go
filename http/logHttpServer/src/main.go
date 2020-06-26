@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"net/http"
 	"log"
+	"net/http"
 )
 
 func main() {
@@ -14,4 +14,3 @@ func main() {
 func homePage(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "This is Home Page")
 }
-
