@@ -17,75 +17,68 @@ write package name in the beginning of the code. this will be the name of the pa
 
 ``` package packageName ``` 				 -	 Use to import to other packages
 
-### import
+### import packages
 
-``` import lib ```
+``` import pkg ```
 
 ```
 import (
-  http
   fmt
   io/ioutil
   net/http
+
+  github.com/some/package
+  nameOfPackage github.com/some/package
 )
 ```
 
+### using packages
+
+```fmt.Println("I'm using fmt package")``` use packges by the name (according to `import` packages)
+
 ### data types:
+
+in go, everything is a TYPE!
 
 primitive data type \ built-in types
 
-``` bool ```
+``` bool ```      -     boolean: `true` or `false`)
 
-``` string ```
+``` string ```    -     string: ```"hello world"``` 
 
-``` int  int8  int16  int32  int64 ```
+``` int  int8  int16  int32  int64 ```  -     integer: numeric value, a whole number `45`
 
-``` uint uint8 uint16 uint32 uint64 uintptr ```
+``` uint uint8 uint16 uint32 uint64 uintptr ```     -     unsigned integer
 
-``` byte ```									      - 	alias for uint8
+``` byte ```							-		      alias for uint8
 
-``` rune ```										    -   alias for int32 represents a Unicode code point
+``` rune ```							-			    alias for int32 represents a Unicode code point
 
-``` float32 float64 ```
+``` float32 float64 ```   -     float: numeric value with decimal `0.123`
 
-``` complex64 complex128 ```
+``` complex64 complex128 ``` 
 
 composite data-types:
 
-Array
-
-Slice
-
-Struct
-
-Pointer
-
-Function
-
-Interface
-
-Map
+array, slice, struct, pointer, function, interface, map (examples below)
 
 ### conversions
 
+what's known as casting in other languages, is conversion in go - convert a type to another type
 
+
+
+### variadic parameters
+
+every value is also type of ```interface{}```
+
+```...interface{}``` means, this will accept as many values of any type
 
 ### operators:
 
 ``` +,-,*,/,%	```								    -  Addtion, subtraction, multiplication, division,remainder
 
 ``` &&, || ,!	```								    -  And, or, not
-
-### fucntions
-
-running main function here print "Hello World"
-
-```
-func main() {
-	x := "Hello World"
-	fmt.Println(x)
-}
-```
 
 ### variables
 
@@ -99,12 +92,15 @@ func main() {
 
 ``` var var1,var2,var3 = "Pita", "Kebab", "Chips" ``` -  initialize 3 vars
 
+short declaration of a variable used only within `{}`:
 ```
 func main() {
-	varName := value	      // short form - only within functions (actually only {} )
-	_, varName := 34, 35      // blank variable, 34 will be ignored and 35 will assign to varName
+	varName := value
+	_, varName := 34, 35
 }
 ```
+
+```_``` is a blank variable, value that can return nothing
 
 group of variables:
 
