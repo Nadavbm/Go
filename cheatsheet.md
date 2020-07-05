@@ -62,12 +62,6 @@ composite data-types:
 
 array, slice, struct, pointer, function, interface, map (examples below)
 
-### conversions
-
-what's known as casting in other languages, is conversion in go - convert a type to another type
-
-
-
 ### variadic parameters
 
 every value is also type of ```interface{}```
@@ -82,6 +76,14 @@ the definition of Println is `func Println(a ...interface{}) (n int, err error)`
 ``` +,-,*,/,%	```								    -  Addtion, subtraction, multiplication, division,remainder
 
 ``` &&, || ,!	```								    -  And, or, not
+
+##### logical operators in use
+
+```
+	fmt.Printf("true and false\t %v\n", true && false)
+	fmt.Printf("true or true\t %v\n", true || true)
+	fmt.Printf("not true\t\t %v\n", !true)
+```
 
 ### variables
 
@@ -197,9 +199,9 @@ initialize, condition, post:
 
 the `while` keyword doesn't exist in go, instead use `for`:
 ```
-for sum < 100 {
-  sum += sum
-}
+  for sum < 100 {
+    sum += sum
+  }
 ```
 
 ##### nested loops
@@ -257,23 +259,23 @@ x := 1
 ##### if statement
 
 ```
-if x > 4 {
-  fmt.println("x is greater than 4")
-} else {
-  fmt.println(" x is less than 4")
-}
+  if x > 4 {
+    fmt.println("x is greater than 4")
+  } else {
+    fmt.println(" x is less than 4")
+  }
 ```
 
 ##### if, else if, else
 
 ```
-if x:= someInt; x == 3 {
-  fmt.println("x is equal to 3")
-} else if x < 3 {
-  fmt.println("x is less than 3")
-} else {
-  fmt.println("x is greater than 3")
-}	
+  if x:= someInt; x == 3 {
+    fmt.println("x is equal to 3")
+  } else if x < 3 {
+    fmt.println("x is less than 3")
+  } else {
+    fmt.println("x is greater than 3")
+  }	
 ```
 
 #### switch statements:
@@ -396,69 +398,6 @@ type Preson struct {
 
 ``` shimon := Person{name: "Shimon", age: 54} ```
 
-### conditional statements:
-
-#### switch statements:
-```
-func caseExample() {
-	i := 10
-	switch i {
-	case 1:
- 		fmt.println("i is equal to 1")
-	}
-	case 2,3,4:
-  		fmt.println("i is equal to 2,3 or 4")
-	case 10:
-  		fmt.println("i is equal to 10")
-	default:
-  		fmt.println("i is an integer that doesn't comply with the other CASE statement")
-}
-```
-```
-func funcWithFallThrough() {
-	i := 4
-	switch i {
-	case 2:
-	  fmt.println("i <= 2")
- 	fallthrough
-	case 4:
- 		fmt.println("i <= 4")
-	fallthrough
-	case 6:
-  		fmt.println("i <= 6")
- 	fallthrough
-	default:
- 		fmt.println("default case")
-}
-```
-### loops:
-
-for loop example (init, condition, post):
-```
-	sum := 10
-	for i=0; i < 10; i++ {
-  		sum += i
-	}											
-
-```
-
-the `while` keyword doesn't exist in go, instead use `for`:
-```
-for sum < 100 {
-  sum += sum
-}
-```
-
-```
-func forLoopWithBreak(){
-	for i :=10; i>0 ;i-- {
-  		if i == 5{
-    		break 								// Break or continue for loop (depeneds of condition)
-  	}
-  	fmt.println(i)
-	}
-}
-```
 
 ```
 for i,g := range map {
@@ -473,39 +412,7 @@ for _, v := range map {
 }												// For loop with _
 ```
 
-#### switch statements:
-```
-func caseExample() {
-	i := 10
-	switch i {
-	case 1:
- 		fmt.println("i is equal to 1")
-	}
-	case 2,3,4:
-  		fmt.println("i is equal to 2,3 or 4")
-	case 10:
-  		fmt.println("i is equal to 10")
-	default:
-  		fmt.println("i is an integer that doesn't comply with the other CASE statement")
-}
-```
-```
-func funcWithFallThrough() {
-	i := 4
-	switch i {
-	case 2:
-	  fmt.println("i <= 2")
- 	fallthrough
-	case 4:
- 		fmt.println("i <= 4")
-	fallthrough
-	case 6:
-  		fmt.println("i <= 6")
- 	fallthrough
-	default:
- 		fmt.println("default case")
-}
-```
+
 ### functions:
 
 ```
