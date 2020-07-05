@@ -427,6 +427,20 @@ use `make` to define the slice and the underline array by size (of the slice) an
 
 ``` mapName := map[string]float32 {"someThing": 5.432, "otherThing": 43.234, "anotherThing": 123.321} ``` -  
 
+using `for` over map:
+```
+  for i,g := range map {
+    fmt.println ("Key: ", k)
+    fmt.println =("Value: ", v)
+  }
+``` 
+
+```
+  for _, v := range map {
+    fmt.println("I want to print only values so: ", v)
+  }	
+```
+
 initialize map with keys and values
 
 ```
@@ -461,20 +475,6 @@ type Preson struct {
 ``` var ish Person ```
 
 ``` shimon := Person{name: "Shimon", age: 54} ```
-
-
-```
-for i,g := range map {
-  fmt.println ("Key: ", k)
-  fmt.println =("Value: ", v)
-}												// For loop using a map
-``` 
-
-```
-for _, v := range map {
-  fmt.println("I want to print only values so: ", v)
-}												// For loop with _
-```
 
 
 ### functions:
