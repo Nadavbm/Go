@@ -417,6 +417,8 @@ use `make` to define the slice and the underline array by size (of the slice) an
 
 ### maps:
 
+map is a key-value store. syntax for a map is map[key]value. maps are unordered
+
 ``` var people map[string]int ```			- 	map string to integer - example: name to age
 
 ``` people := make(map[string]int) ```
@@ -465,17 +467,55 @@ initialize map with keys and values
 ```
 
 ### structs:
+
+struct is a composite data type which allow us to composing values of different types.
+
 ```
-type Preson struct {
+  type Preson struct {
+  	name string
+  	age int
+  }
+  
+  var ish Person
+
+  shimon := Person{
+      name: "Shimon", 
+      age: 54
+  }
+
+  ruhama := Person {
+      name: "Ruhama",
+      age: 57
+  }
+
+  fmt.Println(shimon)
+  fmt.Println(shimon.age, ruhama.age)
+```
+
+embedded structs:
+
+```
+type Person struct {
 	name string
-	age int
+	age  int
+}
+
+type TruckDriver struct {
+	Person
+	truckd 	bool
+}
+
+func main() {
+	truckDriver := TruckDriver{
+		Person: Person{
+			name: "Sami HaKabai",
+			age:  36,
+		},
+		truckd: true,
+	}
+	fmt.Println(truckDriver, truckDriver.age, truckDriver.truckd)
 }
 ```
-
-``` var ish Person ```
-
-``` shimon := Person{name: "Shimon", age: 54} ```
-
 
 ### functions:
 
