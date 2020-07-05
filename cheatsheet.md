@@ -72,7 +72,10 @@ what's known as casting in other languages, is conversion in go - convert a type
 
 every value is also type of ```interface{}```
 
-```...interface{}``` means, this will accept as many values of any type
+```...interface{}``` means, this will accept as many values of any type.
+
+```fmt.Println("String", 53, 123.123, "Another string")``` 
+the definition of Println is `func Println(a ...interface{}) (n int, err error)`
 
 ### operators:
 
@@ -173,7 +176,7 @@ arrays:
 ```
 menu := [...]string{"Falafel", "Hummus", "Shawarma"}
 veggimenu := menu[0:1]
-fmt.Println(veggimenu)						// Print Falafel and Hummus
+fmt.Println(veggimenu)
 ```
 
 ### maps:
@@ -195,7 +198,7 @@ menu := map[string]int{
 	"Hummus":	18,
 	"Shawarma":	32,
 }
-fmt.Println(menu["Hummus"])					// Print 18
+fmt.Println(menu["Hummus"])
 ```
 
 ### structs:
@@ -230,24 +233,25 @@ if x:= someInt; x == 3 {
   fmt.println("x is less than 3")
 } else {
   fmt.println("x is greater than 3")
-}												// If, else if, else statement
+}	
 ```
 
 ### loops:
 
+for loop example (init, condition, post):
 ```
-func forLoop(){
 	sum := 10
 	for i=0; i < 10; i++ {
   		sum += i
 	}											
-}												// For loop
+
 ```
 
+the `while` keyword doesn't exist in go, instead use `for`:
 ```
 for sum < 100 {
   sum += sum
-}												// For which is actually similar to while
+}
 ```
 
 ```
