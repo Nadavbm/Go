@@ -85,11 +85,11 @@ the definition of Println is `func Println(a ...interface{}) (n int, err error)`
 
 ### variables
 
-``` var varName type ``` 							-              define global variable (data types above)
+``` var varName type ``` 							-             define global variable (data types above)
 
-``` var var1,var2,var3 string ```			-	            define 3 variables
+``` var var1,var2,var3 string ```			-	            define 3 variables. the values of these vars is zero, since not initialized
 
-```var vanName int = 325 ```					-	            define and initial variable
+```var vanName int = 325 ```					-	            define and initialize variable (this will add value instead of zero value)
 
 ``` var var1,var2,var3 int = 1, 2, 3 ```	-	    	  initialize 3 int vars
 
@@ -115,13 +115,41 @@ var (
 )
 ```
 
+in go, everything is a TYPE! to create your own type:
+```
+type kebab int
+var b kebab
+```
+this will create a type called `kebab` which is based on `int`
+
+### conversions
+
+what's known as casting in other languages, is conversion in go - convert a type to another type
+
+conversion written like this: `a = string(b)`. full example of using conversion:
+```
+var a int
+
+type kebab int
+var b kebab
+
+func main() {
+	a = 42
+	b = 43
+	fmt.Printf("%T\n", a)
+	fmt.Printf("%T\n", b)
+	a = int(b)
+	fmt.Printf("%T\n", a)
+}
+```
+
 ### constants:
 
 ``` const constansName = value ```		    - 	 this value cannot change during compile time
 
 ``` const Pi float32 = 3.1415926 ```
 
-```const bestMovieEver = "Die Hard 1" ``` 
+``` const bestMovieEver = "Die Hard 1" ``` 
 
 group of constants
 
@@ -132,6 +160,161 @@ const (
   pi = 3.1415
 )	
 ```
+
+#### iota and bit shifting
+
+iota and shifting binary digit to the left `<<` or right `>>` side
+```
+const (
+  _ = iota
+  kb = 1 << (iota * 10)
+  mb = 1 << (iota * 10)
+  gb = 1 << (iota * 10)
+)
+
+func main() {
+  fmt.Printf("%d\t\t\t%b\n%d\t\t\t%b\n%d\t\t\t%b\n", kb ,kb, mb,mb,gb,gb)
+}
+
+```
+
+### flow control: loops and conditional statements
+
+In computer science, control flow (or flow of control) is the order in which individual statements, instructions or function calls of an imperative program are executed or evaluated.
+Reading from top to bottom, left to right, excuting conditional statements, loops and vars.
+
+### for loops 
+
+initialize, condition, post:
+
+```
+	sum := 10
+	for i=0; i < 10; i++ {
+  		sum += i
+	}											
+
+```
+
+the `while` keyword doesn't exist in go, instead use `for`:
+```
+for sum < 100 {
+  sum += sum
+}
+```
+
+##### nested loops
+
+```
+	for i := 0; i <= 10; i++ {
+    fmt.Printf("outer loop: %d\n", i)
+		for j := 0; j < 3; j++ {
+			fmt.Printf("inner loop: \t\t%d\n", i, j)
+		}
+	}
+```
+
+##### the for statement
+
+```
+	x := 1
+	for x < 10 {
+		fmt.Println(x)
+		x++
+	}
+	fmt.Println("for a condintion of x less than 10, print x and add x += 1")
+```
+
+```
+	x := 1
+	for {
+		if x > 9 {
+			break
+		}
+		fmt.Println(x)
+		x++
+	}
+	fmt.Println("we will break the for loop after the condition fulfilled - x won't be bigger than 9")
+```
+
+##### break and continue
+
+```
+x := 1
+	for {
+		x++
+		if x > 100 {
+			break
+		}
+		if x%2 != 1 {
+			continue
+		}
+		fmt.Println(x is not an equal number)	
+	}
+```
+
+#### conditional statement 
+
+##### if statement
+
+```
+if x > 4 {
+  fmt.println("x is greater than 4")
+} else {
+  fmt.println(" x is less than 4")
+}
+```
+
+##### if, else if, else
+
+```
+if x:= someInt; x == 3 {
+  fmt.println("x is equal to 3")
+} else if x < 3 {
+  fmt.println("x is less than 3")
+} else {
+  fmt.println("x is greater than 3")
+}	
+```
+
+#### switch statements:
+
+switch based on true or false
+
+```
+	switch {
+	case false:
+		fmt.Println("wont print")
+	case (2 == 4):
+		fmt.Println("wont print again")
+	case (3 == 3):
+		fmt.Println("prints")
+	case (12 == 12):
+		fmt.Println("this is true")
+		fallthrough
+	case (9 != 9):
+		fmt.Println("not true")
+		fallthrough
+	default:
+		fmt.Println("print always default")
+	}
+```
+
+switch based on value:
+
+```
+	k := "kebab"
+	switch k {
+	case "hummus":
+		fmt.Println("not kebab")
+	case "shishlik":
+		fmt.Println("still not kebab")
+	case "kebab":
+		fmt.Println("kebab")
+	default:
+		fmt.Println("default food - like prison")
+	}
+```
+
 
 ### arrays, slices and maps:
 
@@ -215,27 +398,39 @@ type Preson struct {
 
 ### conditional statements:
 
-if statement
-
+#### switch statements:
 ```
-if x > 4 {
-  fmt.println("x is greater than 4")
-} else {
-  fmt.println(" x is less than 4")
+func caseExample() {
+	i := 10
+	switch i {
+	case 1:
+ 		fmt.println("i is equal to 1")
+	}
+	case 2,3,4:
+  		fmt.println("i is equal to 2,3 or 4")
+	case 10:
+  		fmt.println("i is equal to 10")
+	default:
+  		fmt.println("i is an integer that doesn't comply with the other CASE statement")
 }
 ```
-
-if, else if, else
 ```
-if x:= someInt; x == 3 {
-  fmt.println("x is equal to 3")
-} else if x < 3 {
-  fmt.println("x is less than 3")
-} else {
-  fmt.println("x is greater than 3")
-}	
+func funcWithFallThrough() {
+	i := 4
+	switch i {
+	case 2:
+	  fmt.println("i <= 2")
+ 	fallthrough
+	case 4:
+ 		fmt.println("i <= 4")
+	fallthrough
+	case 6:
+  		fmt.println("i <= 6")
+ 	fallthrough
+	default:
+ 		fmt.println("default case")
+}
 ```
-
 ### loops:
 
 for loop example (init, condition, post):
@@ -276,13 +471,6 @@ for i,g := range map {
 for _, v := range map {
   fmt.println("I want to print only values so: ", v)
 }												// For loop with _
-```
-
-#### while true statement:
-```
-for {
-  // Statement logic
-}
 ```
 
 #### switch statements:
