@@ -320,7 +320,7 @@ switch based on value:
 
 ### arrays, slices and maps:
 
-arrays:
+arrays cannot be changed in size
 
 ``` var arr [n]type ```
 
@@ -344,7 +344,18 @@ arrays:
 
 ``` fmt.Println(weekdays[3]) ```			-		print Thursday
 
+array of integers, adding 2 in last position
+```
+	var x [5]int
+	fmt.Println(x)
+	x[4] = 2
+	fmt.Println(x)
+	fmt.Println(len(x))
+```  
+
 ### slices:
+
+slice use underline array and can expand. always use slice instead of arrays
 
 ``` var slice []int ```		-		slice of an array
 
@@ -358,32 +369,85 @@ arrays:
 
 ``` c = arrayName[:] 		```				-	all array elements in a Slice
 
+slice of strings
 ```
-menu := [...]string{"Falafel", "Hummus", "Shawarma"}
-veggimenu := menu[0:1]
-fmt.Println(veggimenu)
+  menu := [...]string{"Falafel", "Hummus", "Shawarma"}
+  veggimenu := menu[0:1]
+  fmt.Println(veggimenu)
 ```
+
+slice of integers
+```
+	slc := []int{4, 5, 7, 8, 9}
+	fmt.Println(len(slc))
+	fmt.Println(slc)
+	fmt.Println(slc[1])
+	fmt.Println(slc[1:])
+	fmt.Println(slc[1:3])
+	
+  slc = append(slc, 77, 88, 99, 1014)
+
+	slc2 := []int{234, 456, 678, 987}
+	slc = append(slc, slc2...)
+	fmt.Println(slc)
+
+	slc = append(slc[:2], slc[4:]...)
+	
+	for i, v := range slc {
+		fmt.Println(i, v)	
+	}
+```
+
+use `make` to define the slice and the underline array by size (of the slice) and capacity (of the underline array)
+
+```
+	slc := make([]int, 10, 12)
+	fmt.Println(slc)
+	fmt.Println(len(slc))
+	fmt.Println(cap(slc))
+	
+	slc = append(slc, 13, 99 ,8021)
+	
+	fmt.Println(slc)
+	fmt.Println(len(slc))
+	fmt.Println(cap(slc))
+```
+
+```shish := [][]string{kebab, cebab}``` - multi-dimensional slice
 
 ### maps:
 
-``` var people map[sting] int ```			- 	map string to integer - example: name to age
+``` var people map[string]int ```			- 	map string to integer - example: name to age
 
 ``` people := make(map[string]int) ```
 
 ``` people["Maya"] = 25 	 ```	-  	mapping Key-Value
 
-
 ``` people["Ezra"] = 46 ```
 
-``` mapName := map[string]float32 {"someThing": 5.432, "otherThing": 43.234, "anotherThing": 123.321} ``` -  initialize map with keys and values
+``` mapName := map[string]float32 {"someThing": 5.432, "otherThing": 43.234, "anotherThing": 123.321} ``` -  
+
+initialize map with keys and values
 
 ```
-menu := map[string]int{
-	"Falafel":	15,
-	"Hummus":	18,
-	"Shawarma":	32,
-}
-fmt.Println(menu["Hummus"])
+  menu := map[string]int{
+  	"Falafel":	15,
+  	"Hummus":	18,
+  	"Shawarma":	32,
+  }
+
+  fmt.Println(menu["Hummus"])
+  
+  v, ok := menu["Hummus"]
+	fmt.Println(v)
+	fmt.Println(ok)
+
+	if v, ok := menu["Hummus"]; ok {
+		fmt.Println(v)
+
+  menu["Chips"] = 12
+
+  delete(menu, "Shawarma")
 ```
 
 ### structs:
