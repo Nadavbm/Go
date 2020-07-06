@@ -517,45 +517,54 @@ func main() {
 }
 ```
 
+##### anonymous struct
+
+```
+	person := struct {
+		name    string
+		age		int
+		friends map[string]int
+		food	[]string
+	}{
+		name: 	 "Shimon",
+		age:	 32,
+		friends: map[string]int{
+			"Simha": 	55,
+			"Izik":     27,
+			"Betuel":   38,
+		},
+		food: []string{
+			"Kebab",
+			"Hummus",
+		},
+	}
+	fmt.Println("the name is ", person.first, ", age of ", person.age, " likes to eat - ", person.food)
+
+	for k, v := range person.friends {
+		fmt.Println("friend of %s", person.name, "is ", k, v, " years old")
+	}
+
+	for i, val := range person.food {
+		fmt.Println(i, val)
+	}
+```
+
 ### functions:
 
+a function is a group of statement that execute in the program. function gets an input value and return a different value according the function. We create function to arrange code and for code reusability.
+function will come in this syntax:
 ```
-func funcName(input1 type1, input2 type2) (output1 type1, output2 type2) {
-  return value1, value2
+func (r receiver) funcName(parameters) (return value) {
+  code ..
+  return value
 }
-
 ```
+`func` keyword, receiver (usually type struct in methods), input parameters (of any type) and return value (of any type).
+
+basic function (no parameter nor return values):
 ```
-package main
-
-import "fmt"
-
-func maxNumber(a,b int) int {
-  if a > b {
-    return a
-  }
-  return b
-}										// This function will return the bigger number
-
 func main() {
-  x := 2
-  y := 5
-
-  max_xy := maxNumber(x, y)
-  fmt.Printf("%d is the bigger number", maxNumber(x, y))
-  fmt.Printf("%d is the bigger number", max_xy)
-  fmt.Printf("the numbers were %d and %d", x, y)
-}										// Calling the function maxNumber and return it's value
-```
-
-##### full simple function:
-```
-package main
-
-import "fmt"
-
-func main(){
-  sum := 0;
+  sum := 0
   for i:=0; i < 10; i++ {
     if i%2 == 0 {
       fmt.Println(i, " is even")
@@ -564,6 +573,44 @@ func main(){
     }
   }
   fmt.Println("sum of all odd numbers and less than 11 is: ", sum)
+}
+```
+
+function with parameter and return value, execution in main function:
+```
+func main() {
+	str := pho("falafel")
+	fmt.Println(str)
+}
+
+func pho(str string) string {
+	return fmt.Sprint("eat more ", str)
+}
+```
+
+func that takes two input parameters and return two values:
+```
+func main() {
+	i, boo := calculator([]int{3,2,4,5,6,7,9,12}, 3)
+	fmt.Println(i, boo)
+}
+
+func calculator(numbers []int, mod int) (int, bool) {
+	var moo bool
+	sum := 0
+	for i := range numbers {
+		if i%mod == 0 {
+			fmt.Println(i, "divided well by", mod)
+		}
+		sum += i
+	}
+	if mod%2 == 0 {
+		fmt.Println(moo, "is even number")
+		moo = true
+	} else {
+		moo = false
+	}
+	return sum, moo
 }
 ```
 
@@ -585,24 +632,6 @@ func main() {
   x1 := add1(&x) // use add1 function
   fmt.Println("x is now = ", x1) // x should be 4 here
   fmt.Println("x is now = ", x) // x should be 4 here
-}
-```
-
-#### struct:
-```
-package main
-
-import "fmt"
-
-type Person struct {
-    name string
-    age int
-    hobby string
-}
-
-func main() {
-  Eli := Person{"Eli", 34, "Likes kebab be pita"}
-  fmt.Println("Eli is ", Eli.age, "and he ", Eli.hobby)
 }
 ```
 
