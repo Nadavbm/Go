@@ -614,6 +614,189 @@ func calculator(numbers []int, mod int) (int, bool) {
 }
 ```
 
+function with variadic parameter:
+```
+func pho(x ...int) int {
+	fmt.Println(x)
+	sum := 0
+	for i := range x {
+		sum += i
+	}
+	return sum
+}
+```
+
+##### defer
+
+A defer statement defers the execution of a function until the surrounding function returns.
+
+```
+func main() {
+	defer someFunc()
+	otherFunc()
+}
+```
+
+### anonymous function
+
+anonymous func can be used inside a func
+```
+func main() {
+	func() {
+		fmt.Println("Anonymous")
+	}()
+}
+```
+
+assign func to a variable, print all odd numbers
+```
+func main() {
+	g := func() {
+		for i:=0; i<100; i++ {
+			if i % 2 != 0 {
+				fmt.Println(i)
+			}
+		}
+	}
+	g()
+	fmt.Printf("%T", g)
+}
+```
+
+anonymous func that accept integer
+```
+func main() {
+	f := 2
+	g := func(i int) int {
+		return i * 2
+	}(f)
+	fmt.Println("I add double: ", g)
+}
+```
+
+#### return function
+
+```
+func main() {
+	g := funciturn()
+	fmt.Println(g())
+	fmt.Printf("%T", g)
+}
+
+func funciturn() func() string {
+	return func() string {
+		return "func from a func. funci"
+	}
+}
+```
+
+
+### method 
+
+a method is a function with an implicit first argument, called a receiver
+
+```func (r ReceiverType) funcName(parameter) (results)```
+
+method to calculate area of circle\square:
+
+```
+package main
+
+import (
+	"fmt"
+)
+
+const pi = 3.14
+
+type Circle struct {
+	radius float64
+}
+
+type Square struct {
+	length float64
+	wide   float64
+}
+
+func main() {
+	circle := Circle{radius: 3.2}
+	square := Square{length: 4, wide: 6}
+	c := circle.area()
+	s := square.area()
+	fmt.Println(c, "\t", s)
+}
+
+func (c Circle) area() float64 {
+	return (c.radius / 2) * pi
+}
+
+func (s Square) area() float64 {
+	return s.length * s.wide
+}
+```
+
+### interface
+
+interfaces in Go provide a way to specify the behavior of an object. 
+Interfaces are named collections of method signatures.
+
+```
+package main
+
+import (
+	"fmt"
+)
+
+const pi = 3.14
+
+type Circle struct {
+	radius float64
+}
+
+type Square struct {
+	length float64
+	wide   float64
+}
+
+type Shape interface {
+	area() float64
+}
+
+func main() {
+	circle := Circle{radius: 3.2}
+	square := Square{length: 4, wide: 6}
+	outputSize(circle)
+	outputSize(square)
+}
+
+func outputSize(s Shape) {
+	fmt.Println(s.area())
+}
+
+func (c Circle) area() float64 {
+	return (c.radius * c.radius) * pi
+}
+
+func (s Square) area() float64 {
+	return s.length * s.wide
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Some more examples:
+
 #### pass a copy of Pointer to a funcion:
 ```
 package main
@@ -621,27 +804,20 @@ package main
 import "fmt"
 
 func add1(a *int) int{
-  *a = *a + 1 // add 1 to a
-  return *a // return the new a
+  	*a = *a + 1 // add 1 to a
+  	return *a // return the new a
 }
 
 func main() {
-  x := 3
-  fmt.Println("x = ", x) // x is still 3
+  	x := 3
+  	fmt.Println("x = ", x) // x is still 3
 
-  x1 := add1(&x) // use add1 function
-  fmt.Println("x is now = ", x1) // x should be 4 here
-  fmt.Println("x is now = ", x) // x should be 4 here
+  	x1 := add1(&x) // use add1 function
+  	fmt.Println("x is now = ", x1) // x should be 4 here
+  	fmt.Println("x is now = ", x) // x should be 4 here
 }
 ```
 
-### method 
-
-a method is a function with an implicit first argument, called a receiver
-
-```
-func (r ReceiverType) funcName(parameter) (results)
-```
 
 ##### method example:
 ```
@@ -659,7 +835,7 @@ type Circle struct {
 type Rectangle struct {
   width, height float64
 }
-// method - use Area twice to calculate area of both structs - Circle and Rectangle
+
 func (c Circle) Area() float64 {
   return c.radius * math.Pi
 }
