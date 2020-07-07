@@ -626,7 +626,7 @@ func pho(x ...int) int {
 }
 ```
 
-##### defer
+#### defer
 
 A defer statement defers the execution of a function until the surrounding function returns.
 
@@ -637,7 +637,7 @@ func main() {
 }
 ```
 
-### anonymous function
+##### anonymous function
 
 anonymous func can be used inside a func
 ```
@@ -674,7 +674,7 @@ func main() {
 }
 ```
 
-#### return function
+##### a function which return function
 
 ```
 func main() {
