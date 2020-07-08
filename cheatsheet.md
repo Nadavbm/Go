@@ -833,28 +833,7 @@ func main() {
 
 
 
-Some more examples:
-
-#### pass a copy of Pointer to a funcion:
-```
-package main
-
-import "fmt"
-
-func add1(a *int) int{
-  	*a = *a + 1 // add 1 to a
-  	return *a // return the new a
-}
-
-func main() {
-  	x := 3
-  	fmt.Println("x = ", x) // x is still 3
-
-  	x1 := add1(&x) // use add1 function
-  	fmt.Println("x is now = ", x1) // x should be 4 here
-  	fmt.Println("x is now = ", x) // x should be 4 here
-}
-```
+## Some more examples:
 
 
 ##### method example:
