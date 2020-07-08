@@ -690,6 +690,11 @@ func funciturn() func() string {
 }
 ```
 
+#### callback
+
+passing a func as an arguement
+
+
 
 ### method 
 
@@ -781,9 +786,20 @@ func (s Square) area() float64 {
 }
 ```
 
+### pointers
 
+values stored in memory. a pointer is a memory address and a point is a value stored in memory.
 
+```
+	x := 12
+	fmt.Println("the value of x: ", x, "\nx var in memory address: ", &x)
+	fmt.Printf("type of x: %T\nx pointer type is %T",x , &x)
 
+	var y = &x
+	fmt.Println("\nvalue of y", y, "\nvalue of *y: ", *y)
+	fmt.Printf("what happend to y when assign to a pointer: %T\n", y)
+	fmt.Printf("what is the type of &x now: %T\n", &x)
+```
 
 
 
