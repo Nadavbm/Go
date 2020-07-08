@@ -801,6 +801,28 @@ values stored in memory. a pointer is a memory address and a point is a value st
 	fmt.Printf("what is the type of &x now: %T\n", &x)
 ```
 
+full example (look at output of fmt):
+
+```
+package main
+
+import "fmt"
+
+func add1(a *int) int{
+  	*a = *a + 1
+	fmt.Println("memory address of a: ", a)
+	fmt.Printf("a type is: %T\n*a type is %T\n", *a, a)
+  	return *a
+}
+
+func main() {
+  	x := 3
+  	fmt.Println("the value if x is: ", x, "the memory address of &x: ", &x)
+  	x1 := add1(&x)
+  	fmt.Println("after using x as a pointer in add one function: ", x1)
+	fmt.Printf("the type of x: %T\nthe type of x1: %T", x, x1)
+}
+```
 
 
 
