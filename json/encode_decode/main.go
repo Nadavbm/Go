@@ -62,6 +62,8 @@ func decodeAlbum(jsonSTR string) {
 		} else if err != nil {
 			log.Fatal(err)
 		}
-		fmt.Printf("%s: %s\n", albums[0], albums[1])
+		for i, v := range albums {
+			fmt.Printf("number %d\n-------\nAlbum name: %s\nby the band - %s\nRecord year: %d\n---------------\n", i+1, v.Name, v.Band.Name, v.Year)
+		}
 	}
 }
