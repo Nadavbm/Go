@@ -3,6 +3,8 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"io"
+	"log"
 	"os"
 	"strings"
 )
@@ -52,8 +54,14 @@ func encodeAlbum(albums []Album) {
 }
 
 func decodeAlbum(jsonSTR string) {
-	err := json.NewDecoder(strings.NewReader(jsonSTR))
-	if err != nil {
-		fmt.Println(err)
+	dec := json.NewDecoder(strings.NewReader(jsonSTR))
+	for {
+		var albums []Album
+		if err := dec.Decode(&albums); err == io.EOF {
+			break
+		} else if err != nil {
+			log.Fatal(err)
+		}
+		fmt.Printf("%s: %s\n", albums[0], albums[1])
 	}
 }
