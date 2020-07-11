@@ -33,11 +33,54 @@ json representation of a person:
   ],
 }
 ```
-go package - https://godoc.org/encoding/json
 
-go to json - https://mholt.github.io/json-to-go/
+json array:
+```
+[
+    {
+        "name": "Shimi Tavori",
+        "age": 32
+    }.
+    {
+        "name": "Margalit Sanani",
+        "age": 27
+    },
+]
+```
+
+golang json package documentation - https://godoc.org/encoding/json
+
+json to go - https://mholt.github.io/json-to-go/
 
 ##### marshal
+
+```func Marshal(v interface{}) ([]byte, error)``` - Marshal returns the JSON encoding of v.
+
+marshal structs to json array:
+
+```
+package main
+
+import (
+    "fmt"
+    "encoding/json"
+)
+
+type Food struct {
+    Name    string
+    Price   int
+}
+
+func main() {
+    food1 := Food{
+        Name: "Hummus",
+        Price: 32,
+    }
+    food2 := Food{
+        Name: "Falafel",
+    }
+}
+```
 
 ##### unmarshal
 
