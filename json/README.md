@@ -62,30 +62,71 @@ marshal structs to json array:
 package main
 
 import (
-    "fmt"
-    "encoding/json"
+	"encoding/json"
+	"fmt"
 )
 
 type Food struct {
-    Name    string
-    Price   int
+	Name  string `json:"Name"`
+	Price int    `json: "Price"`
 }
 
 func main() {
-    food1 := Food{
-        Name: "Hummus",
-        Price: 32,
-    }
-    food2 := Food{
-        Name: "Falafel",
-    }
+	food1 := Food{
+		Name:  "Hummus",
+		Price: 13,
+	}
+	food2 := Food{
+		Name:  "Falafel",
+		Price: 11,
+	}
+	food := []Food{food1, food2}
+
+	menu, err := json.Marshal(food)
+	if err != nil {
+		fmt.Println("could not json marshal")
+	}
+	fmt.Println(string(menu))
 }
 ```
 
 ##### unmarshal
 
+```func Unmarshal(data []byte, v interface{}) error``` - Unmarshal parses the JSON-encoded data and stores the result in the value pointed to by v.
+
+```
+package main
+
+import (
+	"encoding/json"
+	"fmt"
+)
+
+type Album struct {
+	Name string `json:"name"`
+	Year int    `json:"year"`
+	Band Band   `json:"band"`
+}
+
+type Band struct {
+	Name  string `json:"name"`
+	Genre string `json:"genre"`
+}
+
+func main() {
+	albumJSON := `{"name":"Leviathan","year":2003,"band":{"name":"Mastodon","genre":"Metal"}}`
+	var album Album
+	err := json.Unmarshal([]byte(albumJSON), &album)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Printf("%v\n", album)
+
+}
+```
+
 ##### encoder
 
 
 
-##### decoder  bbbbb.ihb,,,,,,m.,,.
+##### decoder
