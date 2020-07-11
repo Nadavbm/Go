@@ -1,0 +1,24 @@
+[
+    {
+      "name": "Shimi",
+      "address": [
+        {
+          "street": "HaTavor",
+          "number": 12,
+          "city": "Hadera",
+          "country": "Israel"
+        }
+      ]
+    },
+    {
+      "name": "Margalit",
+      "address": [
+        {
+          "street": "Tabankin",
+          "number": 54,
+          "city": "Herzelia",
+          "country": "Israel"
+        }
+      ]
+    }
+]
