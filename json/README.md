@@ -127,6 +127,59 @@ func main() {
 
 ##### encoder
 
+encode is convert into a coded form. encode json to code. encoding the date directly to the wire. it is using io reader and writer and output the data like fmt.
 
+```type Encoder struct{}``` - an Encoder writes JSON values to an output stream.
+
+```func NewEncoder(w io.Writer) *Encoder``` - NewEncoder returns a new encoder that writes to w.
+
+```func (enc *Encoder) Encode(v interface{}) error``` - Encode writes the JSON encoding of v to the stream, followed by a newline character.
+
+```
+package main
+
+import (
+	"encoding/json"
+	"fmt"
+	"os"
+)
+
+type Album struct {
+	Name string `json:"name"`
+	Year int    `json:"year"`
+	Band Band   `json:"band"`
+}
+
+type Band struct {
+	Name  string `json:"name"`
+	Genre string `json:"genre"`
+}
+
+func main() {
+	albums := []Album{
+		Album{
+			Name: "Leviathan",
+			Year: 2003,
+			Band: Band{
+				Name:  "Mastodon",
+				Genre: "Stoner Metal",
+			},
+		},
+		{
+			Name: "Album of the Year",
+			Year: 1994,
+			Band: Band{
+				Name:  "Faith No More",
+				Genre: "Almost Metal",
+			},
+		},
+	}
+	err := json.NewEncoder(os.Stdout).Encode(albums)
+	if err != nil {
+		fmt.Println(err)
+	}
+}
+```
 
 ##### decoder
+
