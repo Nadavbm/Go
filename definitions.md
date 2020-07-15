@@ -1,63 +1,139 @@
 ## Golang definitions
 
+### methods
 
+A method is a function with a receiver argument. A receiver can be a struct or non-struct type.
 
-#### constants
+```func (receiver Type) MethodName(paramList) (returnType) {} ```
 
-Variables whose values cannot be changed.
-
-	`const str string = "Hello World"`
-	`const x int = 80`
-
-### variadic functions
-
-By adding ... before the type of last parameter, you can take zero or more of that parameter.
+### function vs. method:
 
 ```
-func add(numbers ...int) int {
-	sum := 19
-	for _, v := range numbers {
-		sum += v
-	}
-	return sum
+package main
+
+import (
+	"fmt"
+)
+
+type Point struct {
+	X,Y int
 }
-fmt.Println(add(10,23,78))
+
+// This is a function to check right or left from the given point
+func IsLeft(p Point, y int) bool {
+	return p.X < x
+}
+
+// This is a method to check the same thing
+func (p Point) IsRight(x int) bool {
+	return p.X > x
+}
+
+func main() {
+	p := Point{2,5}
+	fmt.Println("Check if the point is more to the right than 4: ", p.IsRight(4))
+	fmt.Println("Check if it is more to the the left: ", IsLeft(p, 4))
+}
 ```
 
-### variadic parameters
+method with pointer receiver
 
-Unlimited parameters of any type ```...interface{}``` (can add how many values \ arguments you want)
+```func (receiver *Type) MethodName(paramList) (returnType) {}```
 
-``` func Println(a ...interface{}) (n int, err error) ``` this function take a value of any type and unlimited amount of them
 
-```fmt.Println("String", 12, true)``` can print any value with unlimited amount of values from any type
+### pointers
 
-#### closure
-
-Function inside a function:
+object that stores the memory address of another value located in computer memory.
 
 ```
 func main() {
-	subtract := func (i,j int) int {
-			return i - j
-	}
-	fmt.Println(subtract(10,4))
+	i, j := 42, 2701
+
+	p := &i         // point to i
+	fmt.Println(*p) // read i through the pointer
+	*p = 21         // set i through the pointer
+	fmt.Println(i)  // see the new value of i
+
+	p = &j         // point to j
+	*p = *p / 37   // divide j through the pointer
+	fmt.Println(j) // see the new value of j
 }
 ```
 
-#### recursion
+#### the * and & operators
 
-Function which is able to call itself.
+
+
+#### new
+
+
+
+### goroutines
+
+
+
+### channels
+
 
 ```
-func factorial(x int) uint {
-	if x == 0 {
-		return 1
-	}
-	return x * factorial(x-1)
+func main() {
+	cs := make(chan int)
+
+	go func() {
+		cs <- 123
+	}()
+	fmt.Println(<-cs)
+	fmt.Printf("cs\t%T\n", cs)
 }
-fmt.Println(factorial(10))
 ```
+using send and receive channels:
+```
+func main() {
+	c := make(chan int)
+	go receive(c)
+	send(c)
+	fmt.Println("Exit soon...")
+}
+
+func receive(c <-chan int) { fmt.Println(<-c) }
+
+func send(c chan<- int) { c <- 123 }
+```
+ranging over a channel
+```
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	c := addVal()
+	receiveVal(c)
+}
+
+func addVal() <-chan int {
+	c := make(chan int)
+	go func() {
+		for i := 0; i < 10; i++ {
+			c <- i
+		}
+		close(c)
+	}()
+	return c
+}
+
+func receiveVal(c <-chan int) {
+	for v := range c {
+		fmt.Println(v)
+	}
+}
+```
+
+### concurrency
+
+
+
 
 #### defer, panic & recover
 
@@ -99,96 +175,7 @@ func main() {
 }
 ```
 
-### pointers
-
-object that stores the memory address of another value located in computer memory.
-
-```
-func main() {
-	i, j := 42, 2701
-
-	p := &i         // point to i
-	fmt.Println(*p) // read i through the pointer
-	*p = 21         // set i through the pointer
-	fmt.Println(i)  // see the new value of i
-
-	p = &j         // point to j
-	*p = *p / 37   // divide j through the pointer
-	fmt.Println(j) // see the new value of j
-}
-```
-
-#### the * and & operators
+#### Race condition
 
 
-
-
-#### new
-
-
-
-
-#### struct
-
-A struct is a collection of fields. 
-
-type someThing struct {
-	x int
-	str string
-}
-fmt.Println(someThing{1,"Hello"})
-
-### methods
-
-A method is a function with a receiver argument. A receiver can be a struct or non-struct type.
-
-func (receiver Type) MethodName(paramList) (returnType) {
-}
-
-### function vs. method:
-
-```
-package main
-
-import (
-	"fmt"
-)
-
-type Point struct {
-	X,Y int
-}
-// This is a function to check right or left from the given point
-func IsLeft(p Point, y int) bool {
-	return p.X < x
-}
-// This is a method to check the same thing
-func (p Point) IsRight(x int) bool {
-	return p.X > x
-}
-
-func main() {
-	p := Point{2,5}
-	fmt.Println("Check if the point is more to the right than 4: ", p.IsRight(4))
-	fmt.Println("Check if it is more to the the left: ", IsLeft(p, 4))
-}
-```
-
-### method with pointer receiver
-
-```
-func (receiver *Type) MethodName(paramList) (returnType) {
-}
-```
-
-
-
-### interface
-
-
-
-
-### channels
-
-
-
-
+#### Error handling

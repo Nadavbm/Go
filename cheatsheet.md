@@ -64,6 +64,12 @@ array, slice, struct, pointer, function, interface, map (examples below)
 
 ### variadic parameters
 
+Unlimited parameters of any type ```...interface{}``` (can add how many values \ arguments you want)
+
+``` func Println(a ...interface{}) (n int, err error) ``` this function take a value of any type and unlimited amount of them
+
+```fmt.Println("String", 12, true)``` can print any value with unlimited amount of values from any type
+
 every value is also type of ```interface{}```
 
 ```...interface{}``` means, this will accept as many values of any type.
@@ -146,6 +152,12 @@ func main() {
 ```
 
 ### constants:
+
+Variables whose values cannot be changed.
+
+``` const str string = "Hello World"```
+
+``` const x int = 80```
 
 ``` const constansName = value ```		    - 	 this value cannot change during compile time
 
@@ -468,6 +480,16 @@ initialize map with keys and values
 
 ### structs:
 
+A struct is a collection of fields. 
+
+```
+type someThing struct {
+	x int
+	str string
+}
+fmt.Println(someThing{1,"Hello"})
+```
+
 struct is a composite data type which allow us to composing values of different types.
 
 ```
@@ -613,6 +635,20 @@ func calculator(numbers []int, mod int) (int, bool) {
 	return sum, moo
 }
 ```
+### variadic functions
+
+By adding ... before the type of last parameter, you can take zero or more of that parameter.
+
+```
+func add(numbers ...int) int {
+	sum := 19
+	for _, v := range numbers {
+		sum += v
+	}
+	return sum
+}
+fmt.Println(add(10,23,78))
+```
 
 function with variadic parameter:
 ```
@@ -674,6 +710,19 @@ func main() {
 }
 ```
 
+##### closure
+
+Function inside a function:
+
+```
+func main() {
+	subtract := func (i,j int) int {
+			return i - j
+	}
+	fmt.Println(subtract(10,4))
+}
+```
+
 ##### a function which return function
 
 ```
@@ -690,6 +739,20 @@ func funciturn() func() string {
 }
 ```
 
+#### recursion
+
+Function which is able to call itself.
+
+```
+func factorial(x int) uint {
+	if x == 0 {
+		return 1
+	}
+	return x * factorial(x-1)
+}
+fmt.Println(factorial(10))
+```
+
 #### callback
 
 passing a func as an arguement
@@ -701,6 +764,10 @@ passing a func as an arguement
 a method is a function with an implicit first argument, called a receiver
 
 ```func (r ReceiverType) funcName(parameter) (results)```
+
+method with pointer receiver
+
+```func (receiver *Type) MethodName(paramList) (returnType) {}```
 
 method to calculate area of circle\square:
 
@@ -896,5 +963,67 @@ func main() {
   go falafel("Humus") // create a new goroutine
   go falafel("Chips") //
   falafel("Salat") // current go routine
+}
+```
+
+### channels
+
+to make a channel - ``` c := make(chan int) ```
+
+adding values to the channel - ``` c <- 123 ```
+
+using channel with goroutine
+
+```
+func main() {
+	c := make(chan int)
+	go func (){ c <- 100 }()
+	fmt.Println(<-c)
+}
+```
+
+taking value of the channel - ``` <- c ```
+
+buffered channels - ``` c := make(chan int, 10) ```
+
+```
+func main() {
+	c := make(chan int, 10)
+	c <- 123
+	fmt.Println(<-c)
+}
+```
+
+only receive channel - ``` make(<-chan int) ```
+
+only send channel - ``` make(chan<- int)```
+
+make send and receive channels:
+```
+package main
+
+import "fmt"
+
+func main() {
+	c := make(chan int)
+	cr := make(<-chan int) // receive
+	cs := make(chan<- int) //send
+
+	fmt.Printf("c\t%T\ncr\t%T\ncs\t%T\n", c, cr, cs)
+
+	cr = c // can assign bxd to d but not `c = cr` 
+}
+```
+
+send channel:
+```
+func main() {
+	cs := make(chan int)
+
+	go func() {
+		cs <- 123
+	}()
+	fmt.Println(<-cs)
+	fmt.Printf("cs\t%T\n", cs)
 }
 ```
