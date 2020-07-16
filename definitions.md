@@ -99,7 +99,9 @@ func receive(c <-chan int) { fmt.Println(<-c) }
 
 func send(c chan<- int) { c <- 123 }
 ```
-ranging over a channel
+
+ranging over a channel ( two receive channels)
+
 ```
 package main
 
