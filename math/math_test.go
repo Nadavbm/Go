@@ -9,6 +9,7 @@ type TestSome struct {
 	result int
 }
 
+// run tests in this directory with 'go test ./... -v'
 func TestGetSum(t *testing.T) {
 	xy := GetSum(1, 2, 3)
 	if xy != 6 {
@@ -24,5 +25,12 @@ func TestGetSum(t *testing.T) {
 		if zz != v.result {
 			t.Error("expected", v.result, "got", zz)
 		}
+	}
+}
+
+// to run benchmark type 'go test -bench .
+func BenchGetSum(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		GetSum(14, 31, 51)
 	}
 }
