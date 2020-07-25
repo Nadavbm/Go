@@ -891,54 +891,6 @@ func main() {
 }
 ```
 
-
-
-
-
-
-
-
-
-
-## Some more examples:
-
-
-##### method example:
-```
-package main
-
-import (
-   "fmt"
-   "math"
-)
-
-type Circle struct {
-  radius float64
-}
-
-type Rectangle struct {
-  width, height float64
-}
-
-func (c Circle) Area() float64 {
-  return c.radius * math.Pi
-}
-
-func (r Rectangle) Area() float64 {
-  return r.width + r.height
-}
-
-func main() {
-  c1 := Circle{2}
-  r1 := Rectangle{3,4}
-  r2 := Rectangle{1,2}
-
-  fmt.Println("Area of c1: ", c1.Area())
-  fmt.Println("Area of r1: ", r1.Area())
-  fmt.Println("Area of r2: ", r2.Area())
-}
-```
-
 ### concurrency and goroutine:
 
 ``` go hello(a, b, c) ```
@@ -1025,5 +977,164 @@ func main() {
 	}()
 	fmt.Println(<-cs)
 	fmt.Printf("cs\t%T\n", cs)
+}
+```
+
+using select statement (three channels - odd, even and exit channel to set the last value to 0):
+```
+package main
+
+import "fmt"
+
+func main() {
+	e := make(chan int)
+	o := make(chan int)
+	q := make(chan int)
+
+	go send(e, o, q)
+	receive(e, o, q)
+}
+
+func receive(o, e, q <-chan int) {
+	for {
+		select {
+		case v := <-o:
+			fmt.Println("odd", v)
+		case v := <-e:
+			fmt.Println("even:", v)
+		case v := <-q:
+			fmt.Println("quit dude.. it's not boring, but you can go do something else...", v)
+			return
+		}
+	}
+}
+
+func send(o, e, q chan<- int) {
+	for i := 0; i < 100; i++ {
+		if i%2 != 0 {
+			o <- i
+		} else {
+			e <- i
+		}
+	}
+	close(o)
+	close(e)
+	q <- 0
+}
+```
+
+##### comma ok idiom
+
+```
+package main
+
+import "fmt"
+
+func main() {
+	c := make(chan int)
+	go func() { c <- 123 }()
+	v, ok := <-c
+	fmt.Println(v, ok)
+	close(c)
+	v, ok = <-c
+	fmt.Println(v, ok)
+}
+```
+
+
+
+
+###  Some more examples:
+
+
+##### method example:
+```
+package main
+
+import (
+   "fmt"
+   "math"
+)
+
+type Circle struct {
+  radius float64
+}
+
+type Rectangle struct {
+  width, height float64
+}
+
+func (c Circle) Area() float64 {
+  return c.radius * math.Pi
+}
+
+func (r Rectangle) Area() float64 {
+  return r.width + r.height
+}
+
+func main() {
+  c1 := Circle{2}
+  r1 := Rectangle{3,4}
+  r2 := Rectangle{1,2}
+
+  fmt.Println("Area of c1: ", c1.Area())
+  fmt.Println("Area of r1: ", r1.Area())
+  fmt.Println("Area of r2: ", r2.Area())
+}
+```
+
+##### channels
+
+```
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func main() {
+	c, x := pullOut(addNumbers(1), addString("Number:"))
+	for i := 0; i < 10; i++ {
+		fmt.Println(<-x, <-c)
+	}
+	fmt.Println("Done")
+}
+
+func addNumbers(x int) <-chan int {
+	n := make(chan int)
+	go func() {
+		for i := 0; ; i++ {
+			n <- i
+			time.Sleep(time.Duration(1) * time.Second)
+		}
+	}()
+	return n
+}
+
+func addString(str string) <-chan string {
+	n := make(chan string)
+	go func() {
+		for {
+			n <- str
+		}
+	}()
+	return n
+}
+
+func pullOut(n <-chan int, s <-chan string) (<-chan int, <-chan string) {
+	c := make(chan int)
+	x := make(chan string)
+	go func() {
+		for {
+			c <- <-n
+		}
+	}()
+	go func() {
+		for {
+			x <- <-s
+		}
+	}()
+	return c, x
 }
 ```

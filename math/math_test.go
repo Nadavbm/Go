@@ -29,7 +29,7 @@ func TestGetSum(t *testing.T) {
 }
 
 // to run benchmark type 'go test -bench .
-func BenchGetSum(b *testing.B) {
+func BenchmarkGetSum(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		GetSum(14, 31, 51)
 	}
