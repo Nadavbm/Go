@@ -184,5 +184,54 @@ in tpl3.gotmpl:
 <p>Your sum is {{getSum .}}</p>
 ```
 
+###### pipeline a function
 
-#### html templates
+```{{. | funcOne }}``` pipe a function
+
+```{{. | funcOne | funcTwo }}``` pipe function and pipe another function
+
+
+##### templates pre defined functions
+
+```{{index . 43 }} ``` - access by index position number 43
+
+```{{index .Name 12}}``` - index using a struct field in position 12
+
+###### using if statement in templates
+
+find all text template pre defined functions here: https://godoc.org/text/template#FuncMap
+
+if statement used in template:
+
+```
+{{if .}}
+    ### if variable exist it will print: {{.}} ###
+{{end}}
+```
+ using `and`:
+ ```
+ {{if and .Name .SomeBoolValue}}
+    ### print: {{.Name}}
+ {{end}}
+ ```
+checking if age is greater than:
+```
+{{$drinkAge := 17}}
+
+{{if gt .Age $drinkAge}}
+    ### {{.Name}} is allowed to drink
+{{end}}
+```
+
+#### nested templates
+
+to use nested templates create additional file `head.gotmpl` use this syntax:
+```
+{{define "tempalteName}}
+<p>this can be a footer, header or any other static content</p>
+{{end}}
+```
+and call this template from another template `tpl1.gotmpl`:
+```
+{{teamplte "tempalteName"}}
+```

@@ -314,6 +314,16 @@ to run benchmarking use `go test -bench .` or `go test -bench ./...`
 
 ##### examples
 
-use example to document and run tests:
+write example to document and run tests in the following way `func ExampleFuncName() {}` in the code block add comments `//` Output and result:
+
+```
+func ExampleMyFunc() {
+	fmt.Println(MyFunc(2, 3))
+	// Output:
+	// 6
+}
+```
 
 ##### coverage
+
+verify that all of your functions have tests - ```go test -cover ./...```
