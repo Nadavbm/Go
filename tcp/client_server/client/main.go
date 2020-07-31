@@ -14,7 +14,7 @@ var addr = "localhost:12345"
 func main() {
 	fmt.Println("what you are going to say: ")
 	for {
-		text := scanner()
+		text := textScanner()
 
 		dialHandler(addr, text)
 	}
@@ -30,7 +30,7 @@ func dialHandler(address, text string) {
 	fmt.Fprintln(dial, text)
 }
 
-func scanner() string {
+func textScanner() string {
 	scanner := bufio.NewScanner(os.Stdin)
 	for scanner.Scan() {
 		return scanner.Text()
