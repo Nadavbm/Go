@@ -1,7 +1,7 @@
 
 ## go cheatsheet
 
-```
+``` Go
 /*
   This is a multiline comment
 */
@@ -21,14 +21,14 @@ write package name in the beginning of the code. this will be the name of the pa
 
 ``` import pkg ```
 
-```
+``` Go
 import (
-  fmt
-  io/ioutil
-  net/http
+	"fmt"
+	"io/ioutil"
+	"net/http"
 
-  github.com/some/package
-  nameOfPackage github.com/some/package
+	"github.com/some/package"
+	"nameOfPackage github.com/some/package"
 )
 ```
 
@@ -38,7 +38,7 @@ import (
 
 ### data types:
 
-in go, everything is a TYPE!
+in go, everything is a TYPE
 
 primitive data type \ built-in types
 
@@ -85,7 +85,7 @@ the definition of Println is `func Println(a ...interface{}) (n int, err error)`
 
 ##### logical operators in use
 
-```
+``` Go
 	fmt.Printf("true and false\t %v\n", true && false)
 	fmt.Printf("true or true\t %v\n", true || true)
 	fmt.Printf("not true\t\t %v\n", !true)
@@ -104,7 +104,8 @@ the definition of Println is `func Println(a ...interface{}) (n int, err error)`
 ``` var var1,var2,var3 = "Pita", "Kebab", "Chips" ``` -  initialize 3 vars
 
 short declaration of a variable used only within `{}`:
-```
+
+``` Go
 func main() {
 	varName := value
 	_, varName := 34, 35
@@ -115,16 +116,16 @@ func main() {
 
 group of variables:
 
-```
+``` Go
 var (
-  str string
-  i int
-  flo float32
+	str string
+	i int
+	flo float32
 )
 ```
 
 in go, everything is a TYPE! to create your own type:
-```
+``` Go
 type kebab int
 var b kebab
 ```
@@ -135,7 +136,7 @@ this will create a type called `kebab` which is based on `int`
 what's known as casting in other languages, is conversion in go - convert a type to another type
 
 conversion written like this: `a = string(b)`. full example of using conversion:
-```
+``` Go
 var a int
 
 type kebab int
@@ -167,27 +168,27 @@ Variables whose values cannot be changed.
 
 group of constants
 
-```
+``` Go
 const (
-  i = 24
-  suffix = ".conf"
-  pi = 3.1415
+	i = 24
+	suffix = ".conf"
+	pi = 3.1415
 )	
 ```
 
 #### iota and bit shifting
 
 iota and shifting binary digit to the left `<<` or right `>>` side
-```
+``` Go
 const (
-  _ = iota
-  kb = 1 << (iota * 10)
-  mb = 1 << (iota * 10)
-  gb = 1 << (iota * 10)
+	_ = iota
+	kb = 1 << (iota * 10)
+	mb = 1 << (iota * 10)
+	gb = 1 << (iota * 10)
 )
 
 func main() {
-  fmt.Printf("%d\t\t\t%b\n%d\t\t\t%b\n%d\t\t\t%b\n", kb ,kb, mb,mb,gb,gb)
+	fmt.Printf("%d\t\t\t%b\n%d\t\t\t%b\n%d\t\t\t%b\n", kb ,kb, mb,mb,gb,gb)
 }
 
 ```
@@ -201,7 +202,7 @@ Reading from top to bottom, left to right, excuting conditional statements, loop
 
 initialize, condition, post:
 
-```
+``` Go
 	sum := 10
 	for i=0; i < 10; i++ {
   		sum += i
@@ -210,15 +211,15 @@ initialize, condition, post:
 ```
 
 the `while` keyword doesn't exist in go, instead use `for`:
-```
-  for sum < 100 {
-    sum += sum
-  }
+``` Go
+	for sum < 100 {
+    	sum += sum
+	}
 ```
 
 ##### nested loops
 
-```
+``` Go
 	for i := 0; i <= 10; i++ {
     fmt.Printf("outer loop: %d\n", i)
 		for j := 0; j < 3; j++ {
@@ -229,7 +230,7 @@ the `while` keyword doesn't exist in go, instead use `for`:
 
 ##### the for statement
 
-```
+``` Go
 	x := 1
 	for x < 10 {
 		fmt.Println(x)
@@ -238,7 +239,8 @@ the `while` keyword doesn't exist in go, instead use `for`:
 	fmt.Println("for a condintion of x less than 10, print x and add x += 1")
 ```
 
-```
+for with ```break```
+``` Go
 	x := 1
 	for {
 		if x > 9 {
@@ -252,7 +254,7 @@ the `while` keyword doesn't exist in go, instead use `for`:
 
 ##### break and continue
 
-```
+``` Go
 x := 1
 	for {
 		x++
@@ -270,31 +272,31 @@ x := 1
 
 ##### if statement
 
-```
-  if x > 4 {
-    fmt.println("x is greater than 4")
-  } else {
-    fmt.println(" x is less than 4")
-  }
+``` Go
+	if x > 4 {
+		fmt.println("x is greater than 4")
+  	} else {
+    	fmt.println(" x is less than 4")
+  	}
 ```
 
 ##### if, else if, else
 
-```
-  if x:= someInt; x == 3 {
-    fmt.println("x is equal to 3")
-  } else if x < 3 {
-    fmt.println("x is less than 3")
-  } else {
-    fmt.println("x is greater than 3")
-  }	
+``` Go
+	if x:= someInt; x == 3 {
+		fmt.println("x is equal to 3")
+	} else if x < 3 {
+    	fmt.println("x is less than 3")
+	} else {
+    	fmt.println("x is greater than 3")
+	}	
 ```
 
 #### switch statements:
 
 switch based on true or false
 
-```
+``` Go
 	switch {
 	case false:
 		fmt.Println("wont print")
@@ -315,7 +317,7 @@ switch based on true or false
 
 switch based on value:
 
-```
+``` Go
 	k := "kebab"
 	switch k {
 	case "hummus":
@@ -357,7 +359,7 @@ arrays cannot be changed in size
 ``` fmt.Println(weekdays[3]) ```			-		print Thursday
 
 array of integers, adding 2 in last position
-```
+``` Go
 	var x [5]int
 	fmt.Println(x)
 	x[4] = 2
@@ -382,14 +384,14 @@ slice use underline array and can expand. always use slice instead of arrays
 ``` c = arrayName[:] 		```				-	all array elements in a Slice
 
 slice of strings
-```
-  menu := [...]string{"Falafel", "Hummus", "Shawarma"}
-  veggimenu := menu[0:1]
-  fmt.Println(veggimenu)
+``` Go
+	menu := [...]string{"Falafel", "Hummus", "Shawarma"}
+	veggimenu := menu[0:1]
+	fmt.Println(veggimenu)
 ```
 
 slice of integers
-```
+``` Go
 	slc := []int{4, 5, 7, 8, 9}
 	fmt.Println(len(slc))
 	fmt.Println(slc)
@@ -397,7 +399,7 @@ slice of integers
 	fmt.Println(slc[1:])
 	fmt.Println(slc[1:3])
 	
-  slc = append(slc, 77, 88, 99, 1014)
+  	slc = append(slc, 77, 88, 99, 1014)
 
 	slc2 := []int{234, 456, 678, 987}
 	slc = append(slc, slc2...)
@@ -412,7 +414,7 @@ slice of integers
 
 use `make` to define the slice and the underline array by size (of the slice) and capacity (of the underline array)
 
-```
+``` Go
 	slc := make([]int, 10, 12)
 	fmt.Println(slc)
 	fmt.Println(len(slc))
@@ -442,14 +444,14 @@ map is a key-value store. syntax for a map is map[key]value. maps are unordered
 ``` mapName := map[string]float32 {"someThing": 5.432, "otherThing": 43.234, "anotherThing": 123.321} ``` -  
 
 using `for` over map:
-```
-  for i,g := range map {
-    fmt.println ("Key: ", k)
-    fmt.println =("Value: ", v)
-  }
+``` Go
+	for i,g := range map {
+    	fmt.println ("Key: ", k)
+    	fmt.println =("Value: ", v)
+	}
 ``` 
 
-```
+``` Go
   for _, v := range map {
     fmt.println("I want to print only values so: ", v)
   }	
@@ -457,66 +459,66 @@ using `for` over map:
 
 initialize map with keys and values
 
-```
-  menu := map[string]int{
-  	"Falafel":	15,
-  	"Hummus":	18,
-  	"Shawarma":	32,
-  }
+``` Go
+	menu := map[string]int{
+		"Falafel":	15,
+		"Hummus":	18,
+		"Shawarma":	32,
+	}
 
-  fmt.Println(menu["Hummus"])
+	fmt.Println(menu["Hummus"])
   
-  v, ok := menu["Hummus"]
+	v, ok := menu["Hummus"]
 	fmt.Println(v)
 	fmt.Println(ok)
 
 	if v, ok := menu["Hummus"]; ok {
 		fmt.Println(v)
+	}
+  	menu["Chips"] = 12
 
-  menu["Chips"] = 12
-
-  delete(menu, "Shawarma")
+  	delete(menu, "Shawarma")
 ```
 
 ### structs:
 
 A struct is a collection of fields. 
 
-```
-type someThing struct {
-	x int
-	str string
-}
-fmt.Println(someThing{1,"Hello"})
+``` Go
+	type someThing struct {
+		x int
+		str string
+	}
+	fmt.Println(someThing{1,"Hello"})
 ```
 
 struct is a composite data type which allow us to composing values of different types.
 
-```
-  type Preson struct {
-  	name string
-  	age int
-  }
-  
-  var ish Person
+``` Go
+	type Preson struct {
+		name string
+		age int
+	}
+	
+	var ish Person
 
-  shimon := Person{
-      name: "Shimon", 
-      age: 54
-  }
+	shimon := Person{
+	    name: "Shimon", 
+	    age: 54
+	}
 
-  ruhama := Person {
-      name: "Ruhama",
-      age: 57
-  }
+	ruhama := Person {
+	    name: "Ruhama",
+	    age: 57
+	}
 
-  fmt.Println(shimon)
-  fmt.Println(shimon.age, ruhama.age)
+	fmt.Println(shimon)
+	fmt.Println(shimon.age, ruhama.age)
 ```
 
 embedded structs:
 
-```
+``` Go
 type Person struct {
 	name string
 	age  int
@@ -541,7 +543,7 @@ func main() {
 
 ##### anonymous struct
 
-```
+``` Go
 	person := struct {
 		name    string
 		age		int
@@ -575,31 +577,31 @@ func main() {
 
 a function is a group of statement that execute in the program. function gets an input value and return a different value according the function. We create function to arrange code and for code reusability.
 function will come in this syntax:
-```
+``` Go
 func (r receiver) funcName(parameters) (return value) {
-  code ..
-  return value
+	// code ..
+	return value
 }
 ```
 `func` keyword, receiver (usually type struct in methods), input parameters (of any type) and return value (of any type).
 
 basic function (no parameter nor return values):
-```
+``` Go
 func main() {
-  sum := 0
-  for i:=0; i < 10; i++ {
-    if i%2 == 0 {
-      fmt.Println(i, " is even")
-    } else {
-      sum += i
-    }
-  }
-  fmt.Println("sum of all odd numbers and less than 11 is: ", sum)
+	sum := 0
+	for i:=0; i < 10; i++ {
+		if i%2 == 0 {
+			fmt.Println(i, " is even")
+		} else {
+			sum += i
+		}
+	}
+	fmt.Println("sum of all odd numbers and less than 11 is: ", sum)
 }
 ```
 
 function with parameter and return value, execution in main function:
-```
+``` Go
 func main() {
 	str := pho("falafel")
 	fmt.Println(str)
@@ -611,7 +613,7 @@ func pho(str string) string {
 ```
 
 func that takes two input parameters and return two values:
-```
+``` Go
 func main() {
 	i, boo := calculator([]int{3,2,4,5,6,7,9,12}, 3)
 	fmt.Println(i, boo)
@@ -639,7 +641,7 @@ func calculator(numbers []int, mod int) (int, bool) {
 
 By adding ... before the type of last parameter, you can take zero or more of that parameter.
 
-```
+``` Go
 func add(numbers ...int) int {
 	sum := 19
 	for _, v := range numbers {
@@ -651,7 +653,7 @@ fmt.Println(add(10,23,78))
 ```
 
 function with variadic parameter:
-```
+``` Go
 func pho(x ...int) int {
 	fmt.Println(x)
 	sum := 0
@@ -666,17 +668,17 @@ func pho(x ...int) int {
 
 A defer statement defers the execution of a function until the surrounding function returns.
 
-```
+``` Go
 func main() {
-	defer someFunc()
-	otherFunc()
+	someFunc()
+	defer otherFunc()
 }
 ```
 
 ##### anonymous function
 
 anonymous func can be used inside a func
-```
+``` Go
 func main() {
 	func() {
 		fmt.Println("Anonymous")
@@ -685,7 +687,7 @@ func main() {
 ```
 
 assign func to a variable, print all odd numbers
-```
+``` Go
 func main() {
 	g := func() {
 		for i:=0; i<100; i++ {
@@ -700,7 +702,7 @@ func main() {
 ```
 
 anonymous func that accept integer
-```
+``` Go
 func main() {
 	f := 2
 	g := func(i int) int {
@@ -714,7 +716,7 @@ func main() {
 
 Function inside a function:
 
-```
+``` Go
 func main() {
 	subtract := func (i,j int) int {
 			return i - j
@@ -725,7 +727,7 @@ func main() {
 
 ##### a function which return function
 
-```
+``` Go
 func main() {
 	g := funciturn()
 	fmt.Println(g())
@@ -743,7 +745,7 @@ func funciturn() func() string {
 
 Function which is able to call itself.
 
-```
+``` Go
 func factorial(x int) uint {
 	if x == 0 {
 		return 1
@@ -771,7 +773,7 @@ method with pointer receiver
 
 method to calculate area of circle\square:
 
-```
+``` Go
 package main
 
 import (
@@ -811,7 +813,7 @@ func (s Square) area() float64 {
 interfaces in Go provide a way to specify the behavior of an object. 
 Interfaces are named collections of method signatures.
 
-```
+``` Go
 package main
 
 import (
@@ -857,7 +859,7 @@ func (s Square) area() float64 {
 
 values stored in memory. a pointer is a memory address and a point is a value stored in memory.
 
-```
+``` Go
 	x := 12
 	fmt.Println("the value of x: ", x, "\nx var in memory address: ", &x)
 	fmt.Printf("type of x: %T\nx pointer type is %T",x , &x)
@@ -870,7 +872,7 @@ values stored in memory. a pointer is a memory address and a point is a value st
 
 full example (look at output of fmt):
 
-```
+``` Go
 package main
 
 import "fmt"
@@ -896,7 +898,7 @@ func main() {
 ``` go hello(a, b, c) ```
 
 Example of goroutine:
-```
+``` Go
 package main
 
 import (
@@ -905,16 +907,16 @@ import (
 )
 
 func falafel(str string) {
-  for i := 0; i < 5; i++ {
-    runtime.Gosched()
-    fmt.Println(str)
-  }
+	for i := 0; i < 5; i++ {
+		runtime.Gosched()
+		fmt.Println(str)
+	}
 }
 
 func main() {
-  go falafel("Humus") // create a new goroutine
-  go falafel("Chips") //
-  falafel("Salat") // current go routine
+	go falafel("Humus") // create a new goroutine
+	go falafel("Chips") //
+	falafel("Salat") // current go routine
 }
 ```
 
@@ -926,7 +928,7 @@ adding values to the channel - ``` c <- 123 ```
 
 using channel with goroutine
 
-```
+``` Go
 func main() {
 	c := make(chan int)
 	go func (){ c <- 100 }()
@@ -938,7 +940,7 @@ taking value of the channel - ``` <- c ```
 
 buffered channels - ``` c := make(chan int, 10) ```
 
-```
+``` Go
 func main() {
 	c := make(chan int, 10)
 	c <- 123
@@ -951,7 +953,7 @@ only receive channel - ``` make(<-chan int) ```
 only send channel - ``` make(chan<- int)```
 
 make send and receive channels:
-```
+``` Go
 package main
 
 import "fmt"
@@ -968,7 +970,7 @@ func main() {
 ```
 
 send channel:
-```
+``` Go
 func main() {
 	cs := make(chan int)
 
@@ -981,7 +983,7 @@ func main() {
 ```
 
 using select statement (three channels - odd, even and exit channel to set the last value to 0):
-```
+``` Go
 package main
 
 import "fmt"
@@ -1025,7 +1027,7 @@ func send(o, e, q chan<- int) {
 
 ##### comma ok idiom
 
-```
+``` Go
 package main
 
 import "fmt"
@@ -1048,7 +1050,7 @@ func main() {
 
 
 ##### method example:
-```
+``` Go
 package main
 
 import (
@@ -1085,7 +1087,7 @@ func main() {
 
 ##### channels
 
-```
+``` Go
 package main
 
 import (
