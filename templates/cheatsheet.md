@@ -12,7 +12,7 @@ to use a specific text template in go -
 
 1. parse the template:
 
-```
+``` Go
 tpl, err := template.ParseFiles("tpl.gohtml")
 if err != nil {
     log.Fatalln(err)
@@ -20,7 +20,7 @@ if err != nil {
 ```
 
 2. execute the template:
-```
+``` Go
 err = tpl.Execute(os.Stdout, nil)
 if err != nil {
     log.Fatalln(err)
@@ -37,7 +37,7 @@ to use a templates folder -
 
 4. excute the templates
 
-```
+``` Go
 tpl, err := template.ParseGlob("templates/*")
 if err != nil {
     log.Fatalln(err)
@@ -56,7 +56,7 @@ if err != nil {
 
 we can also initialize glob of templates with init func and use `template.Must` to parse this folder only once:
 
-```
+``` Go
 var tpl *template.Template
 
 func init() {
@@ -70,7 +70,7 @@ to pass data use this syntax inside the template ```{{.}}```. the `.` is the pie
 
 for example passing 12 (an int) - in template `{{.}}` will be `12`:
 
-```
+``` Go
 err = tpl.ExecuteTemplate(os.Stdout, "tpl1.gotmpl", 12)
 if err != nil {
     log.Fatalln(err)
@@ -85,7 +85,7 @@ to use this var - ```{{$varName}}```
 
 passing a slice ```[]slice{"bunch","0f","strings"}``` to a template and ranging this slice in the template:
 
-```
+``` html
 <ul>
     {{range .}}
     <li>{{.}}</li>
@@ -95,7 +95,7 @@ passing a slice ```[]slice{"bunch","0f","strings"}``` to a template and ranging 
 
 using index and elements as a variables:
 
-```
+``` html
 <ul>
     {{range $i, $e := .}}
     <li>{{index: $i, element: $e}}</li>
@@ -105,14 +105,14 @@ using index and elements as a variables:
 
 passing a map to a template:
 
-```
+``` Go
 album := map[string]string{
     "Mastodon": "Leviathan",
     "Faith No More": "Album of the year",
 }
 ```
 and using key value in the template:
-```
+``` html
 <ul>
     {{range $k, $v := .}}
     <li>{{$k : $v}}</li>
@@ -122,7 +122,7 @@ and using key value in the template:
 
 passing struct fields to a template:
 
-```
+``` Go
 type Person struct{
     Name    string
     Age     int
@@ -143,7 +143,7 @@ func main() {
 
 in tpl1.gotmpl:
 
-```
+``` html
 <h1>Hello {{.Name}}</h1>
 <p>Your age is {{.Age}}</p>
 ```
@@ -151,7 +151,7 @@ in tpl1.gotmpl:
 ##### pass functions to templates
 
 create functions in your go code and assign it to a template:
-```
+``` Go
 var tpl *template.Template
 
 var funcMap = tempalte.FuncMap{
@@ -179,7 +179,7 @@ func main() {
 }
 ```
 in tpl3.gotmpl:
-```
+``` HTML
 <h1>Sum calculator</h1>
 <p>Your sum is {{getSum .}}</p>
 ```
@@ -203,35 +203,35 @@ find all text template pre defined functions here: https://godoc.org/text/templa
 
 if statement used in template:
 
-```
+``` html
 {{if .}}
-    ### if variable exist it will print: {{.}} ###
+    ### if variable exist it will print: {{.}} ### <br>
 {{end}}
 ```
  using `and`:
- ```
+ ``` html
  {{if and .Name .SomeBoolValue}}
-    ### print: {{.Name}}
+    ### print: {{.Name}} <br>
  {{end}}
  ```
 checking if age is greater than:
-```
+``` html
 {{$drinkAge := 17}}
 
 {{if gt .Age $drinkAge}}
-    ### {{.Name}} is allowed to drink
+    ### {{.Name}} is allowed to drink <br>
 {{end}}
 ```
 
 #### nested templates
 
 to use nested templates create additional file `head.gotmpl` use this syntax:
-```
+``` html
 {{define "tempalteName}}
 <p>this can be a footer, header or any other static content</p>
 {{end}}
 ```
 and call this template from another template `tpl1.gotmpl`:
-```
+``` html
 {{teamplte "tempalteName"}}
 ```
