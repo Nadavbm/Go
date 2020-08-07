@@ -9,7 +9,7 @@ import (
 
 const (
 	user     = "postgres"
-	pass     = "pass1234"
+	pass     = "postgres"
 	host     = "localhost"
 	port     = 5432
 	database = "dbName"
@@ -17,7 +17,7 @@ const (
 
 func main() {
 	conn := fmt.Sprintf("postgres://%s:%s@%s/%s?sslmode=disable", user, pass, host, database)
-	db, err := sql.Open("posgres", conn)
+	db, err := sql.Open("postgres", conn)
 	if err != nil {
 		panic(err)
 	}
