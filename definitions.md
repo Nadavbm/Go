@@ -8,7 +8,7 @@ A method is a function with a receiver argument. A receiver can be a struct or n
 
 ### function vs. method:
 
-```
+``` GO
 package main
 
 import (
@@ -45,7 +45,7 @@ method with pointer receiver
 
 object that stores the memory address of another value located in computer memory.
 
-```
+``` GO
 func main() {
 	i, j := 42, 2701
 
@@ -76,7 +76,7 @@ func main() {
 ### channels
 
 
-```
+``` GO
 func main() {
 	cs := make(chan int)
 
@@ -88,7 +88,7 @@ func main() {
 }
 ```
 using send and receive channels:
-```
+``` GO
 func main() {
 	c := make(chan int)
 	go receive(c)
@@ -103,7 +103,7 @@ func send(c chan<- int) { c <- 123 }
 
 ranging over a channel ( two receive channels):
 
-```
+``` GO
 package main
 
 import (
@@ -134,7 +134,7 @@ func receiveVal(c <-chan int) {
 ```
 
 using `select` statement to pull off values from a channel
-```
+``` GO
 package main
 
 import (
@@ -175,7 +175,7 @@ func addVal(q chan<- int) <-chan int {
 ```
 
 output from two types of channels:
-```
+``` GO
 package main
 
 import (
@@ -234,7 +234,7 @@ func pullOut(n <-chan int, s <-chan string) (<-chan int, <-chan string) {
 
 ``` defer ``` - schedule function to run after a function completes or at the end of another function.
 
-```
+``` GO
 func main() {
 	defer fmt.Println("world")
 	fmt.Println("hello")
@@ -253,7 +253,7 @@ func readFile(file string) (err error) {
 
 ``` recover ``` - built in function that can recover from panic, capturing the value of panic and resume normal execution of the program.
 
-```
+``` GO
 func do() {
   defer func() {
     r := recover()
@@ -289,7 +289,7 @@ math.go  math_test.go
 ```
 
 and add tests to the `_test.go` file. all tests should be name as `func TestFuncName(t *testing.T) {}`
-```
+``` GO
 func TestMyFunc(t *testing.T) {
 	xy := MyFunc(2, 3)
 	if xy != 6 {
@@ -302,7 +302,7 @@ then run the test by running `go test ./... -v` for all directories or `cd pkgDi
 ##### benchmarking
 
 in the same file, to run benchmarking to test the function speed, name the function `func BenchmarkFuncName(b *testing.B) {}`
-```
+``` GO
 func BenchmarkMyFunc(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		xy := MyFunc(2, 3)
@@ -316,7 +316,7 @@ to run benchmarking use `go test -bench .` or `go test -bench ./...`
 
 write example to document and run tests in the following way `func ExampleFuncName() {}` in the code block add comments `//` Output and result:
 
-```
+``` GO
 func ExampleMyFunc() {
 	fmt.Println(MyFunc(2, 3))
 	// Output:
