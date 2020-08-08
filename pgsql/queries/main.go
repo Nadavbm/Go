@@ -65,7 +65,7 @@ func main() {
 	}
 
 	for _, al := range albums {
-		fmt.Println("album name: ", al.name, "\tplay by the band", al.band, "year", al.year)
+		fmt.Println("album name: ", al.name, "\tplay by the band", al.band, "\trecord year:", al.year)
 	}
 
 }
