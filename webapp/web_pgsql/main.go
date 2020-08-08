@@ -1,3 +1,8 @@
+// package main will run simple web app to show address book
+// and add addresses.
+// to run this app use Makefile
+// to add an address use this command:
+// curl -i -X POST -d "Sweden&city=Stokholm&street=HadNess&number=12&zip=54321" localhost:8080/add
 package main
 
 import (
@@ -9,6 +14,7 @@ import (
 	_ "github.com/lib/pq"
 )
 
+// connection based on that - compare with docker-conpose or docker commad in Makefile
 const (
 	user     = "postgres"
 	pass     = "pass1234"
@@ -17,6 +23,7 @@ const (
 	database = "address"
 )
 
+// intial db migration - create the table and add one address
 var migration string = `
 
 CREATE TABLE address_book (id serial primary key not null, country char(50), city char(50), street text, number int, zip int);
@@ -63,6 +70,7 @@ func main() {
 	http.ListenAndServe(":8080", nil)
 }
 
+// list all addresses in the database
 func listAddresses(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
 		http.Error(w, http.StatusText(405), 405)
@@ -98,6 +106,9 @@ func listAddresses(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// api to add additional address
+// example: curl -i -X POST -d "Sweden&city=Stokholm&street=HadNess&number=12&zip=54321" localhost:8080/add
+// to add an address.
 func addAddress(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "POST" {
 		http.Error(w, http.StatusText(405), 405)
