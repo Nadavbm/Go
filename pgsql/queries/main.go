@@ -48,18 +48,18 @@ func main() {
 		log.Println("db migraiton failed", err)
 	}
 
-	rows, err := db.Query("SELECT * FROM albums;")
+	rows, err := db.Query("SELECT name, band, year, genre FROM albums;")
 	if err != nil {
 		log.Println("cannot query database", err)
 	}
 	defer rows.Close()
 
-	albums := make([]Album, 0)
+	albums := make([]*Album, 0)
 	for rows.Next() {
-		al := Album{}
+		al := new(Album)
 		err := rows.Scan(&al.name, &al.band, &al.year, &al.genre)
 		if err != nil {
-			log.Println("could not assing values from database in struct album: ", err)
+			log.Fatal("could not assing values from database in struct album: ", err)
 		}
 		albums = append(albums, al)
 	}
