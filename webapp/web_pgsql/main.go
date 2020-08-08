@@ -58,7 +58,7 @@ func init() {
 
 // running api
 func main() {
-	//http.HandleFunc("/add", addAddress)
+	http.HandleFunc("/add", addAddress)
 	http.HandleFunc("/index", listAddresses)
 	http.ListenAndServe(":8080", nil)
 }
@@ -94,12 +94,39 @@ func listAddresses(w http.ResponseWriter, r *http.Request) {
 	}
 
 	for _, addr := range addrs {
-		fmt.Fprintf(w, "%s, %s, %s, %v, %v", addr.country, addr.city, addr.street, addr.number, addr.zip)
+		fmt.Fprintf(w, "\n%s, %s, %s, %v, %v", addr.country, addr.city, addr.street, addr.number, addr.zip)
 	}
 }
 
-/*
-func addAddress() {
+func addAddress(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "POST" {
+		http.Error(w, http.StatusText(405), 405)
+		return
+	}
 
+	country := r.FormValue("country")
+	city := r.FormValue("city")
+	street := r.FormValue("street")
+	number := r.FormValue("number")
+	zip := r.FormValue("zip")
+
+	if country == "" || city == "" || street == "" {
+		http.Error(w, http.StatusText(400), 400)
+		return
+	}
+
+	address, err := db.Exec("INSERT INTO address_book(country, city, street, number, zip) VALUES ($1, $2, $3, $4, $5)", country, city, street, number, zip)
+	if err != nil {
+		http.Error(w, http.StatusText(500), 500)
+		return
+	}
+
+	affRows, err := address.RowsAffected()
+	if err != nil {
+		http.Error(w, http.StatusText(500), 500)
+		return
+	}
+
+	addstr := fmt.Sprintf("%s %s %s %d %d", country, city, street, number, zip)
+	fmt.Fprintf(w, "Address ' %s ' created successfully and %d row added", addstr, affRows)
 }
-*/
