@@ -31,12 +31,25 @@ func main() {
 		log.Println("ERROR: listing docker container:", err)
 	}
 	for _, container := range containers {
-		fmt.Println(string(container.ID[:12]))
+		fmt.Println(string(container.ID[:10]))
+	}
+
+	err = GetContainerLogs()
+	if err != nil {
+		log.Println("ERROR: cannot get container logs")
 	}
 
 	err = StopAllRunningContainers()
 	if err != nil {
 		log.Println("ERROR: creating container:", err)
+	}
+
+	containers, err = ListContainers()
+	if err != nil {
+		log.Println("ERROR: listing docker container:", err)
+	}
+	for _, container := range containers {
+		fmt.Println(string(container.ID[:10]))
 	}
 }
 
@@ -65,7 +78,7 @@ func ListContainers() ([]types.Container, error) {
 		return nil, err
 	}
 
-	fmt.Println("docker containers:\nid\t\tname\t\tstatus")
+	fmt.Println("\nRUNNING CONTAINERS:\nID\t\tNAME\t\tSTATUS")
 	for _, container := range containers {
 		fmt.Printf("%s\t%s\t%s\n", container.ID[:10], container.Image, container.Status)
 	}
@@ -117,6 +130,7 @@ func GetContainerLogs() error {
 		log.Println("could not list containers:", err)
 	}
 
+	fmt.Println("\nALL CONTAINER LOGS:")
 	for _, container := range containers {
 		out, err := cli.ContainerLogs(ctx, string(container.ID[:12]), options)
 		if err != nil {
