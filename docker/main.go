@@ -13,19 +13,25 @@ import (
 )
 
 func main() {
-	err := ListContainers()
+	containers, err := ListContainers()
 	if err != nil {
 		log.Println("ERROR: listing docker container:", err)
 	}
-
-	err = ListVolumes()
-	if err != nil {
-		log.Println("ERROR: listing docker voluems:", err)
+	for _, container := range containers {
+		fmt.Println(string(container.ID[:12]))
 	}
 
 	err = CreateContainer()
 	if err != nil {
 		log.Println("ERROR: creating container:", err)
+	}
+
+	containers, err = ListContainers()
+	if err != nil {
+		log.Println("ERROR: listing docker container:", err)
+	}
+	for _, container := range containers {
+		fmt.Println(string(container.ID[:12]))
 	}
 
 	err = StopAllRunningContainers()
@@ -48,15 +54,15 @@ func SetConfig() (*client.Client, error) {
 }
 
 // list all docker containers - docker ps
-func ListContainers() error {
+func ListContainers() ([]types.Container, error) {
 	config, err := SetConfig()
 	if err != nil {
-		return err
+		return nil, err
 	}
 
 	containers, err := config.ContainerList(context.Background(), types.ContainerListOptions{})
 	if err != nil {
-		return err
+		return nil, err
 	}
 
 	fmt.Println("docker containers:\nid\t\tname\t\tstatus")
@@ -64,7 +70,7 @@ func ListContainers() error {
 		fmt.Printf("%s\t%s\t%s\n", container.ID[:10], container.Image, container.Status)
 	}
 
-	return nil
+	return containers, nil
 }
 
 // create a docker container
@@ -94,6 +100,31 @@ func CreateContainer() error {
 	}
 
 	fmt.Println(resp.ID)
+	return nil
+}
+
+func GetContainerLogs() error {
+	ctx := context.Background()
+	cli, err := SetConfig()
+	if err != nil {
+		log.Println("could not set config for docker")
+	}
+
+	options := types.ContainerLogsOptions{ShowStdout: true}
+	// Replace this ID with a container that really exists
+	containers, err := ListContainers()
+	if err != nil {
+		log.Println("could not list containers:", err)
+	}
+
+	for _, container := range containers {
+		out, err := cli.ContainerLogs(ctx, string(container.ID[:12]), options)
+		if err != nil {
+			log.Println("", err)
+		}
+
+		io.Copy(os.Stdout, out)
+	}
 	return nil
 }
 
